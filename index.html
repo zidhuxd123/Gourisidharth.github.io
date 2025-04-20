@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Will You Be My Valentine?</title>
   <style>
-    /* ==== GUARANTEED WORKING STYLES ==== */
     body {
       font-family: Arial, sans-serif;
       text-align: center;
@@ -71,13 +70,19 @@
       font-style: italic;
       margin-top: 15px;
     }
+    /* Hidden audio player */
+    #bgMusic {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
   <div class="card">
     <div class="question">
       Will you be my<br>
-      <span class="wife">Wife</span>
+      <span class="wife">WIFE</span>
       Forever?
     </div>
     
@@ -88,11 +93,31 @@
       <button class="no" id="noButton">Nope I hate you Sidharth</button>
     </div>
     
-    <p class="plea">♡</p>
+    <p class="plea">please goury</p>
   </div>
 
+  <!-- Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="soft-piano.mp3" type="audio/mpeg">
+  </audio>
+
   <script>
-    document.getElementById("noButton").addEventListener("click", function() {
+    // Music player (auto-plays quietly)
+    document.addEventListener('DOMContentLoaded', function() {
+      const music = document.getElementById('bgMusic');
+      music.volume = 0.3; // 20% volume
+      
+      // Auto-play with fallback to click-to-play
+      const playPromise = music.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          document.addEventListener('click', () => music.play(), { once: true });
+        });
+      }
+    });
+
+    // Button interaction
+    document.getElementById('noButton').addEventListener('click', function() {
       this.textContent = "Yes please!";
       this.className = "yes";
     });
