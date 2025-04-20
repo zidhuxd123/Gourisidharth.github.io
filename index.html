@@ -4,48 +4,74 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Will You Be My Valentine?</title>
-  <!-- Modern Romantic Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Quicksand:wght@500;700&family=Pacifico&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/valentine.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+      text-align: center;
+      background: linear-gradient(to right, #ff6b6b, #ff8e8e);
+      color: white;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    #valentineQuestion {
+      font-size: 2rem;
+      margin: 30px 0;
+      font-weight: 600;
+    }
+    .buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin: 25px 0;
+    }
+    button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .yesButton {
+      background: white;
+      color: #ff6b6b;
+      font-weight: 600;
+    }
+    .noButton {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: 1px solid white;
+    }
+    .plea-text {
+      font-style: italic;
+      margin-top: 30px;
+    }
+  </style>
 </head>
 <body>
-  <div id="valentineQuestion">Will you be my WIFE Forever?</div>
+  <div id="valentineQuestion">
+    Will you be my<br>
+    <span style="font-weight:700;font-size:2.2rem">WIFE</span><br>
+    Forever?
+  </div>
   
-  <div class="buttons-container">
-    <button class="answerButton yesButton" onclick="location.href='thankyou.html'">
-      Yes 💖
+  <div class="buttons">
+    <button class="yesButton" onclick="location.href='thankyou.html'">
+      Yes
     </button>
-    <button class="answerButton noButton" id="noButton">
+    <button class="noButton" id="noButton">
       Nope i hate you Sidharth
     </button>
   </div>
   
-  <img src="cat.gif" alt="Romantic cat animation" class="responsive">
-  
-  <p class="plea-text">please goury <span class="heart-pulse">❤️</span></p>
+  <p class="plea-text">please goury &lt;3</p>
 
   <script>
-    // Enhanced button interaction
     document.getElementById("noButton").addEventListener("click", function() {
       const yesButton = document.querySelector('.yesButton');
-      const currentSize = parseInt(window.getComputedStyle(yesButton).fontSize);
-      yesButton.style.fontSize = (currentSize + 8) + "px";
-      
-      // Romantic color transition
-      this.style.backgroundColor = "#ff3366";
-      this.style.color = "white";
+      yesButton.style.transform = 'scale(1.1)';
+      setTimeout(() => yesButton.style.transform = 'scale(1)', 300);
     });
-    
-    // Floating hearts animation (adds visual feedback)
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.innerHTML = '❤️';
-      heart.className = 'floating-heart';
-      heart.style.left = Math.random() * 100 + 'vw';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 5000);
-    }
-    setInterval(createHeart, 300);
   </script>
 </body>
 </html>
