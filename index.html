@@ -3,38 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Will You Be My Valentine?</title>
-  <link rel="stylesheet" href="css/valentine.css">
+  <title>Valentine Proposal</title>
+  <style>
+    /* ==== NO MORE MISSING STYLES ==== */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #ff6b6b;
+      color: white;
+      padding: 20px;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      max-width: 400px;
+      width: 100%;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .wife {
+      font-size: 32px;
+      font-weight: bold;
+      display: block;
+      margin: 15px 0;
+    }
+    .cat-gif {
+      width: 250px;
+      margin: 20px 0;
+      border-radius: 10px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin: 25px 0;
+    }
+    button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .yes {
+      background: white;
+      color: #ff6b6b;
+    }
+    .no {
+      background: #e05555;
+      color: white;
+    }
+    .plea {
+      margin-top: 20px;
+      font-style: italic;
+    }
+  </style>
 </head>
 <body>
-  <div class="card">
-    <div id="valentineQuestion">
-      Will you be my<br>
-      <span class="highlight-word">WIFE</span><br>
-      Forever?
-    </div>
-    
-    <p class="plea-text">please goury</p>
+  <div class="container">
+    <h1>Will you be my</h1>
+    <span class="wife">WIFE</span>
+    <h1>Forever?</h1>
     
     <img src="cat.gif" alt="Romantic cat" class="cat-gif">
     
     <div class="buttons">
-      <button class="yesButton" onclick="location.href='thankyou.html'">
-        Yes
-      </button>
-      <button class="noButton" id="noButton">
-        Nope I hate you Sidharth
-      </button>
+      <button class="yes" onclick="location.href='thankyou.html'">Yes</button>
+      <button class="no" id="noButton">Nope I hate you Sidharth</button>
     </div>
+    
+    <p class="plea">please goury</p>
   </div>
 
   <script>
     document.getElementById("noButton").addEventListener("click", function() {
-      const yesButton = document.querySelector('.yesButton');
-      yesButton.style.transform = 'scale(1.1)';
-      setTimeout(() => {
-        yesButton.style.transform = 'scale(1)';
-      }, 300);
+      alert("Please click YES instead! 😊");
     });
   </script>
 </body>
