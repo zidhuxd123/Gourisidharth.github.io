@@ -28,29 +28,24 @@
           yesButton.style.fontSize = currentFontSize + 10 + "px"; // Increase font size by 5px
         });
     </script>
- <script>
-  // Create 30 hearts automatically
-  function createHearts() {
-    const colors = ['#ff6b6b', '#ff8e8e', '#ffb3b3']; // Red/pink shades
-    
-    for (let i = 0; i < 30; i++) {
-      setTimeout(() => {
-        const heart = document.createElement('div');
-        heart.className = 'heart';
-        heart.innerHTML = '❤️';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = 3 + Math.random() * 7 + 's';
-        heart.style.color = colors[Math.floor(Math.random() * colors.length)];
-        document.body.appendChild(heart);
-        
-        // Remove heart after animation
-        setTimeout(() => heart.remove(), 10000);
-      }, i * 300);
-    }
-  }
+<script>
+function createHearts() {
+  const heartChars = ['❤', '♥', '❥']; // Variety of heart symbols
   
-  // Start animation when page loads
-  window.onload = createHearts;
+  setInterval(() => {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerHTML = heartChars[Math.floor(Math.random() * heartChars.length)];
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = 5 + Math.random() * 10 + 's';
+    heart.style.opacity = 0.2 + Math.random() * 0.3; // Random subtle opacity
+    document.body.appendChild(heart);
+    
+    // Auto-remove after animation
+    setTimeout(() => heart.remove(), 15000);
+  }, 300); // New heart every 300ms
+}
+window.onload = createHearts;
 </script>
   </body>
 </html>
