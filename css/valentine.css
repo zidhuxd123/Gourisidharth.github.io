@@ -62,3 +62,9 @@ body {
 .plea-text {
   font-family: 'Dancing Script', "Lucida Handwriting", cursive;
 }
+.answerButton[onclick*="thankyou.html"] {
+  background: #fff;
+  border: 2px solid #ff3366;
+  text-shadow: 0 2px 4px rgba(255,51,102,0.3);
+  transform: scale(1.05); /* Slightly larger than other buttons */
+}
