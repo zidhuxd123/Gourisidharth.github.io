@@ -6,52 +6,55 @@
   <title>Will You Be My Valentine?</title>
   <style>
     body {
-      font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+      font-family: Arial, Helvetica, sans-serif; /* Standard web-safe font */
       text-align: center;
-      background: linear-gradient(to right, #ff6b6b, #ff8e8e);
+      background: #ff6b6b; /* Solid color instead of gradient */
       color: white;
-      padding: 20px;
-      line-height: 1.6;
+      padding: 40px 20px;
+      line-height: 1.5;
     }
     #valentineQuestion {
-      font-size: 2rem;
-      margin: 30px 0;
-      font-weight: 600;
+      font-size: 24px;
+      margin: 0 0 30px 0;
+      font-weight: normal;
+    }
+    #valentineQuestion b {
+      font-size: 28px;
+      display: block;
+      margin: 10px 0;
     }
     .buttons {
       display: flex;
       gap: 15px;
       justify-content: center;
-      margin: 25px 0;
+      margin: 30px 0;
     }
     button {
-      padding: 12px 25px;
+      padding: 12px 30px;
       border: none;
-      border-radius: 25px;
-      font-size: 1.1rem;
+      border-radius: 4px;
+      font-size: 16px;
       cursor: pointer;
-      transition: all 0.3s;
+      min-width: 150px;
     }
     .yesButton {
       background: white;
       color: #ff6b6b;
-      font-weight: 600;
     }
     .noButton {
-      background: rgba(255,255,255,0.2);
+      background: #e05555;
       color: white;
-      border: 1px solid white;
     }
     .plea-text {
-      font-style: italic;
       margin-top: 30px;
+      font-size: 18px;
     }
   </style>
 </head>
 <body>
   <div id="valentineQuestion">
     Will you be my<br>
-    <span style="font-weight:700;font-size:2.2rem">WIFE</span><br>
+    <b>WIFE</b>
     Forever?
   </div>
   
@@ -60,17 +63,15 @@
       Yes
     </button>
     <button class="noButton" id="noButton">
-      Nope i hate you Sidharth
+      Nope I hate you Sidharth
     </button>
   </div>
   
-  <p class="plea-text">please goury &lt;3</p>
+  <p class="plea-text">please goury</p>
 
   <script>
     document.getElementById("noButton").addEventListener("click", function() {
-      const yesButton = document.querySelector('.yesButton');
-      yesButton.style.transform = 'scale(1.1)';
-      setTimeout(() => yesButton.style.transform = 'scale(1)', 300);
+      alert("Please reconsider! Click Yes instead!");
     });
   </script>
 </body>
