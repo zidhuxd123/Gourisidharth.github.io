@@ -1,33 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@500;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gouri Sidharth</title>
-    <link rel="stylesheet" href="css/valentine.css" />
-  </head>
-  <body>
-    <div id="valentineQuestion"><b>Will you be my WIFE Forever?</b></div>
-    <button class="answerButton" onclick="location.href='thankyou.html'">
-      Yes
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will You Be My Valentine?</title>
+  <!-- Modern Romantic Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Quicksand:wght@500;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/valentine.css">
+</head>
+<body>
+  <div id="valentineQuestion">Will you be my WIFE Forever?</div>
+  
+  <div class="buttons-container">
+    <button class="answerButton yesButton" onclick="location.href='thankyou.html'">
+      Yes 💖
     </button>
-    <button class="answerButton" id="noButton">Nope i hate you Sidharth</button>
-    <br />
-    <img src="cat.gif" alt="cat asking question" class="responsive" />
+    <button class="answerButton noButton" id="noButton">
+      Nope i hate you Sidharth
+    </button>
+  </div>
+  
+  <img src="cat.gif" alt="Romantic cat animation" class="responsive">
+  
+  <p class="plea-text">please goury <span class="heart-pulse">❤️</span></p>
 
-    <script>
-      document
-        .getElementById("noButton")
-        .addEventListener("click", function () {
-          var yesButton = document.querySelector(
-            'button[onclick*="thankyou.html"]'
-          );
-          var currentFontSize = parseInt(
-            window.getComputedStyle(yesButton).fontSize
-          );
-          yesButton.style.fontSize = currentFontSize + 8 + "px"; // Increase font size by 5px
-        });
-    </script>
-  </body>
+  <script>
+    // Enhanced button interaction
+    document.getElementById("noButton").addEventListener("click", function() {
+      const yesButton = document.querySelector('.yesButton');
+      const currentSize = parseInt(window.getComputedStyle(yesButton).fontSize);
+      yesButton.style.fontSize = (currentSize + 8) + "px";
+      
+      // Romantic color transition
+      this.style.backgroundColor = "#ff3366";
+      this.style.color = "white";
+    });
+    
+    // Floating hearts animation (adds visual feedback)
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.innerHTML = '❤️';
+      heart.className = 'floating-heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 300);
+  </script>
+</body>
 </html>
