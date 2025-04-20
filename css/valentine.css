@@ -1,28 +1,99 @@
-@import url('https://fonts.googleapis.com/css2?family=Parisienne&family=Quicksand:wght@500;700&display=swap');
-
-/* MAIN ELEMENTS */
+/* Reset and base styles */
 body {
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  background: #ff6b6b;
+  color: white;
+  padding: 20px;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* Card container */
+.card {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Text styling */
 #valentineQuestion {
-  font-family: 'Parisienne', cursive;
-  font-size: 3.5rem;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #ff6b6b;
+  line-height: 1.5;
 }
 
-.answerButton {
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 700;
+.highlight-word {
+  font-size: 32px;
+  font-weight: bold;
+  display: block;
+  margin: 10px 0;
+  color: #ff3366;
 }
 
-/* YES BUTTON SPECIAL */
-.answerButton[onclick*="thankyou.html"] {
-  font-family: 'Parisienne', cursive;
-  font-size: 1.8rem;
-}
-
-/* PLEA TEXT */
 .plea-text {
-  font-family: 'Parisienne', cursive;
-  font-size: 2.2rem;
+  font-size: 18px;
+  margin: 20px 0;
+  color: #ff6b6b;
+  font-style: italic;
+}
+
+/* Cat GIF styling */
+.cat-gif {
+  max-width: 250px;
+  width: 100%;
+  margin: 20px auto;
+  display: block;
+  border-radius: 10px;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.yesButton {
+  background: #ff3366;
+  color: white;
+}
+
+.noButton {
+  background: #f0f0f0;
+  color: #ff3366;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .card {
+    padding: 20px;
+  }
+  #valentineQuestion {
+    font-size: 20px;
+  }
+  .highlight-word {
+    font-size: 28px;
+  }
+  button {
+    padding: 10px 20px;
+  }
 }
