@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Valentine Proposal</title>
+  <title>Will You Be My Valentine?</title>
   <style>
-    /* ==== NO MORE MISSING STYLES ==== */
+    /* ==== GUARANTEED WORKING STYLES ==== */
     body {
       font-family: Arial, sans-serif;
       text-align: center;
@@ -18,27 +18,31 @@
       justify-content: center;
       align-items: center;
     }
-    .container {
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
       max-width: 400px;
-      width: 100%;
+      width: 90%;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
-    h1 {
+    .question {
+      color: #ff6b6b;
       font-size: 24px;
-      margin-bottom: 10px;
+      line-height: 1.5;
     }
     .wife {
       font-size: 32px;
       font-weight: bold;
+      color: #ff3366;
       display: block;
-      margin: 15px 0;
+      margin: 10px 0;
     }
-    .cat-gif {
+    .cat {
       width: 250px;
-      margin: 20px 0;
-      border-radius: 10px;
+      margin: 20px auto;
       display: block;
-      margin-left: auto;
-      margin-right: auto;
+      border-radius: 10px;
     }
     .buttons {
       display: flex;
@@ -52,28 +56,32 @@
       border-radius: 5px;
       font-size: 16px;
       cursor: pointer;
+      min-width: 120px;
     }
     .yes {
-      background: white;
-      color: #ff6b6b;
-    }
-    .no {
-      background: #e05555;
+      background: #ff3366;
       color: white;
     }
+    .no {
+      background: #f0f0f0;
+      color: #ff3366;
+    }
     .plea {
-      margin-top: 20px;
+      color: #ff6b6b;
       font-style: italic;
+      margin-top: 15px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Will you be my</h1>
-    <span class="wife">WIFE</span>
-    <h1>Forever?</h1>
+  <div class="card">
+    <div class="question">
+      Will you be my<br>
+      <span class="wife">WIFE</span>
+      Forever?
+    </div>
     
-    <img src="cat.gif" alt="Romantic cat" class="cat-gif">
+    <img src="cat.gif" alt="Romantic cat" class="cat">
     
     <div class="buttons">
       <button class="yes" onclick="location.href='thankyou.html'">Yes</button>
@@ -85,7 +93,8 @@
 
   <script>
     document.getElementById("noButton").addEventListener("click", function() {
-      alert("Please click YES instead! 😊");
+      this.textContent = "Yes please!";
+      this.className = "yes";
     });
   </script>
 </body>
