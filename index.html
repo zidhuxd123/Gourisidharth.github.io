@@ -25,27 +25,8 @@
           var currentFontSize = parseInt(
             window.getComputedStyle(yesButton).fontSize
           );
-          yesButton.style.fontSize = currentFontSize + 10 + "px"; // Increase font size by 5px
+          yesButton.style.fontSize = currentFontSize + 8 + "px"; // Increase font size by 5px
         });
     </script>
-<script>
-function createHearts() {
-  const heartChars = ['❤', '♥', '❥']; // Variety of heart symbols
-  
-  setInterval(() => {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.innerHTML = heartChars[Math.floor(Math.random() * heartChars.length)];
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = 5 + Math.random() * 10 + 's';
-    heart.style.opacity = 0.2 + Math.random() * 0.3; // Random subtle opacity
-    document.body.appendChild(heart);
-    
-    // Auto-remove after animation
-    setTimeout(() => heart.remove(), 15000);
-  }, 300); // New heart every 300ms
-}
-window.onload = createHearts;
-</script>
   </body>
 </html>
