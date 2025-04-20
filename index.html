@@ -28,19 +28,29 @@
           yesButton.style.fontSize = currentFontSize + 10 + "px"; // Increase font size by 5px
         });
     </script>
-  <script>
-  // Create floating hearts
-  function createHeart() {
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.innerHTML = '❤️';
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = Math.random() * 3 + 2 + 's';
-    document.body.appendChild(heart);
+ <script>
+  // Create 30 hearts automatically
+  function createHearts() {
+    const colors = ['#ff6b6b', '#ff8e8e', '#ffb3b3']; // Red/pink shades
     
-    setTimeout(() => heart.remove(), 5000);
+    for (let i = 0; i < 30; i++) {
+      setTimeout(() => {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = 3 + Math.random() * 7 + 's';
+        heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+        document.body.appendChild(heart);
+        
+        // Remove heart after animation
+        setTimeout(() => heart.remove(), 10000);
+      }, i * 300);
+    }
   }
-  setInterval(createHeart, 300);
-  </script>
+  
+  // Start animation when page loads
+  window.onload = createHearts;
+</script>
   </body>
 </html>
