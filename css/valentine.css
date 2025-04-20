@@ -2,7 +2,7 @@ body {
   text-align: center;
   margin-top: 30px;
   font-family: "Courier";
-  background-color: #fff5e4;
+  background-color: #ff6b6b;
   color: #ff9494;
 }
 
@@ -36,4 +36,15 @@ img {
   color: #ffe3e1;
   border: 2px solid #ff9494;
   box-shadow: 1px 1px 2px #ffe3e1;
+}
+/* Hearts animation */
+@keyframes float {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+.heart {
+  position: fixed;
+  font-size: 20px;
+  animation: float 5s linear infinite;
+  pointer-events: none;
 }
