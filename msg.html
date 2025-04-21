@@ -176,8 +176,8 @@
     <p class="error-message" id="errorMessage">Oops! Try sending your note again ♥</p>
   </div>
 
-  <!-- Audio element for background music -->
-  <audio id="bgm" loop>
+  <!-- Audio element for background music (no loop attribute) -->
+  <audio id="bgm">
     <source src="funni.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
@@ -197,7 +197,10 @@
       const CHAT_ID = "8110106197";
 
       // Set low volume (0.2 = 20% volume)
-      audio.volume = 0.2;
+      audio.volume = 0.5;
+
+      // Ensure audio doesn't loop
+      audio.loop = false;
 
       // Attempt to play audio on page load
       function tryPlayAudio() {
