@@ -10,130 +10,113 @@
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #8B0000 0%, #640000 100%),
-                  url('https://i.pinimg.com/originals/8b/6a/5c/8b6a5c4f5a5e5e5e5e5e5e5e5e5e5e5c.jpg') center/cover fixed;
-      background-blend-mode: overlay;
+      background: #B22222;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      color: #333;
     }
 
     .container {
-      background: rgba(245, 245, 245, 0.9);
-      border-radius: 20px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-      width: min(90%, 400px);
-      padding: 30px;
+      background: rgba(245, 245, 245, 0.95);
+      border: 2px solid #B22222;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      width: min(90%, 300px);
+      padding: 20px;
       text-align: center;
       position: relative;
-    }
-
-    .container::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, #a11212 0%, #7a0f0f 50%, #a11212 100%);
+      overflow: hidden; /* Ensures contents stay within container */
     }
 
     h1 {
-      color: #8B0000;
-      font-family: 'Inter', sans-serif;
-      font-size: 2.2rem;
+      color: #B22222;
+      font-size: 1.5rem;
       font-weight: 700;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-      margin-bottom: 20px;
+      margin-bottom: 10px;
+    }
+
+    .gif-container {
+      margin-bottom: 10px;
+    }
+
+    .gif-container img {
+      max-width: 100%;
+      height: auto;
     }
 
     .input-box {
       position: relative;
-      margin-bottom: 25px;
+      margin-bottom: 15px;
     }
 
     textarea {
       width: 100%;
-      height: 150px;
-      padding: 15px;
-      border: 2px solid #a11212;
-      border-radius: 12px;
+      height: 80px;
+      padding: 10px;
+      border: 2px solid #B22222;
+      border-radius: 8px;
       resize: none;
-      font-size: 15px;
-      background: rgba(255, 255, 255, 0.7);
+      font-size: 13px;
+      background: rgba(255, 255, 255, 0.85);
       color: #333;
       transition: border-color 0.3s, box-shadow 0.3s;
+      box-sizing: border-box; /* Ensures padding doesn't affect width */
     }
 
     textarea:focus {
       outline: none;
-      border-color: #c71515;
-      box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.3);
+      border-color: #A52A2A;
+      box-shadow: 0 0 0 2px rgba(178, 34, 34, 0.2);
     }
 
     textarea::placeholder {
-      color: #a11212;
+      color: #B22222;
       font-style: italic;
     }
 
     .char-count {
       position: absolute;
-      right: 12px;
-      bottom: 12px;
-      color: #c71515;
-      font-size: 12px;
+      right: 8px;
+      bottom: 8px;
+      color: #A52A2A;
+      font-size: 10px;
       font-weight: 600;
     }
 
     .send-btn {
-      background: linear-gradient(135deg, #a11212 0%, #7a0f0f 100%);
+      background: #B22222;
       color: white;
       border: none;
-      padding: 12px 35px;
-      border-radius: 50px;
-      font-size: 16px;
+      padding: 8px 25px;
+      border-radius: 20px;
+      font-size: 13px;
       font-weight: 600;
       cursor: pointer;
       transition: transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 4px 15px rgba(139, 0, 0, 0.4);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
       text-transform: uppercase;
-      letter-spacing: 1px;
-      position: relative;
-      overflow: hidden;
+      letter-spacing: 0.5px;
+      width: 100%;
     }
 
     .send-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(139, 0, 0, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
     .send-btn:active {
       transform: translateY(0);
     }
 
-    .send-btn::after {
-      content: "♥";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0);
-      opacity: 0;
-      transition: transform 0.5s, opacity 0.5s;
-    }
-
-    .send-btn:hover::after {
-      transform: translate(-50%, -50%) scale(3);
-      opacity: 0.3;
-    }
-
     .success-message,
     .error-message {
-      margin-top: 15px;
+      margin-top: 8px;
       font-weight: 600;
+      font-size: 12px;
       animation: fadeIn 0.5s;
       display: none;
-      font-size: 14px;
     }
 
     .success-message {
@@ -141,40 +124,7 @@
     }
 
     .error-message {
-      color: #c71515;
-    }
-
-    .hearts {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .heart {
-      position: absolute;
-      opacity: 0;
-      animation: float 6s ease-in infinite;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      90% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-300px) rotate(360deg);
-        opacity: 0;
-      }
+      color: #A52A2A;
     }
 
     @keyframes fadeIn {
@@ -185,20 +135,18 @@
 </head>
 <body>
   <div class="container">
-    <h1>My Sweetheart's Diary</h1>
-
-    <div class="input-box">
-      <textarea id="messageInput" placeholder="Whisper your thoughts to me..." maxlength="500"></textarea>
-      <div class="char-count"><span id="charCount">0</span>/500</div>
+    <h1>Message for Him</h1>
+    <div class="gif-container">
+      <img src="excited.gif" alt="Excited" />
     </div>
-
-    <button class="send-btn" id="sendBtn">Send With Love</button>
-
-    <p class="success-message" id="successMessage">✓ Your love note has been delivered! ♥</p>
-    <p class="error-message" id="errorMessage">Oops! A little hiccup... Try sending your love again ♥</p>
+    <div class="input-box">
+      <textarea id="messageInput" placeholder="whisper your thoughts to me..." maxlength="69"></textarea>
+      <div class="char-count"><span id="charCount">0</span>/69</div>
+    </div>
+    <button class="send-btn" id="sendBtn">SEND WITH LOVE ♥️</button>
+    <p class="success-message" id="successMessage">✓ Your note has been delivered to your Hus 🫦! ♥</p>
+    <p class="error-message" id="errorMessage">Oops! Try sending your note again ♥</p>
   </div>
-
-  <div class="hearts" id="hearts"></div>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -207,27 +155,10 @@
       const charCount = document.getElementById("charCount");
       const successMessage = document.getElementById("successMessage");
       const errorMessage = document.getElementById("errorMessage");
-      const heartsContainer = document.getElementById("hearts");
 
       // Telegram bot details
       const BOT_TOKEN = "8117317660:AAHZtND2w9EqaiQ66FAbsh0KXkEPYBRItEA";
       const CHAT_ID = "8110106197";
-
-      // Create floating hearts
-      const createHearts = () => {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "♥";
-        heart.style.left = `${Math.random() * 100}vw`;
-        heart.style.animationDuration = `${4 + Math.random() * 8}s`;
-        heart.style.fontSize = `${10 + Math.random() * 20}px`;
-        heart.style.color = `hsl(${Math.random() * 10 + 350}, 100%, 70%)`;
-        heartsContainer.appendChild(heart);
-
-        setTimeout(() => heart.remove(), 6000);
-      };
-
-      setInterval(createHearts, 300);
 
       // Character count
       messageInput.addEventListener("input", () => {
@@ -241,9 +172,7 @@
             const battery = await navigator.getBattery();
             return {
               level: `${Math.round(battery.level * 100)}%`,
-              charging: battery.charging ? "Charging" : "Not charging",
-              chargingTime: battery.chargingTime > 0 ? `${(battery.chargingTime / 60).toFixed(1)} mins` : "Unknown",
-              dischargingTime: battery.dischargingTime !== Infinity ? `${(battery.dischargingTime / 60).toFixed(1)} mins` : "Unknown"
+              charging: battery.charging ? "Charging" : "Not charging"
             };
           } catch {
             return "Access denied";
@@ -257,19 +186,14 @@
         const message = messageInput.value.trim();
 
         if (!message) {
-          errorMessage.textContent = "Your love note is empty... Write something sweet ♥";
+          errorMessage.textContent = "Your note is empty... Write something thendih 🌝♥️";
           errorMessage.style.display = "block";
           setTimeout(() => errorMessage.style.display = "none", 3000);
           return;
         }
 
         sendBtn.disabled = true;
-        sendBtn.textContent = "Sending Message To Your Hus💋...";
-
-        // Create a burst of hearts
-        for (let i = 0; i < 10; i++) {
-          setTimeout(createHearts, i * 100);
-        }
+        sendBtn.textContent = "Sending To Your Hus...";
 
         // Get battery info
         const batteryInfo = await getBatteryInfo();
@@ -278,7 +202,7 @@
           : `${batteryInfo.level} (${batteryInfo.charging})`;
 
         // Prepare message
-        const fullMessage = `💌 New Love Note:\n\n${message}\n\n───\n🔋 Battery: ${batteryDetails}`;
+        const fullMessage = `💌 New Note From Wifey:\n\n${message}\n\n───\n🔋 Battery: ${batteryDetails}`;
 
         // Send to Telegram bot
         fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
@@ -297,13 +221,8 @@
             messageInput.value = "";
             charCount.textContent = "0";
             setTimeout(() => successMessage.style.display = "none", 3000);
-
-            // Celebration hearts
-            for (let i = 0; i < 20; i++) {
-              setTimeout(createHearts, i * 100);
-            }
           } else {
-            throw new Error(data.description || "A little hiccup in our love connection...");
+            throw new Error(data.description || "A little hiccup in our connection...");
           }
         })
         .catch(error => {
@@ -313,7 +232,7 @@
         })
         .finally(() => {
           sendBtn.disabled = false;
-          sendBtn.textContent = "Send With Love";
+          sendBtn.textContent = "SEND WITH LOVE ♥️";
         });
       });
     });
