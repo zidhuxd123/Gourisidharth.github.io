@@ -3,109 +3,240 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Send Me a Message</title>
+  <title>Love Notes for You</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap');
+    
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #fff5f5 0%, #ffebee 100%);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      background-image: url('https://i.pinimg.com/originals/8b/6a/5c/8b6a5c4f5a5e5e5e5e5e5e5e5e5e5e5c.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-blend-mode: overlay;
     }
+    
     .container {
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(255, 105, 180, 0.2);
       width: 90%;
       max-width: 500px;
-      padding: 30px;
+      padding: 40px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
+    
+    .container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: linear-gradient(90deg, #ff9a9e 0%, #fad0c4 50%, #ff9a9e 100%);
+    }
+    
     h1 {
-      color: #4a4a4a;
+      color: #d23669;
       margin-bottom: 20px;
-      font-weight: 600;
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.5rem;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
     }
+    
     .description {
       color: #666;
       margin-bottom: 30px;
       line-height: 1.6;
+      font-size: 1.1rem;
     }
+    
     .input-box {
       position: relative;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
     }
+    
     textarea {
       width: 100%;
-      height: 150px;
-      padding: 15px;
-      border: 2px solid #e0e0e0;
-      border-radius: 10px;
+      height: 180px;
+      padding: 20px;
+      border: 2px solid #ffb6c1;
+      border-radius: 15px;
       resize: none;
       font-size: 16px;
       transition: all 0.3s;
+      background-color: rgba(255, 245, 245, 0.7);
+      color: #555;
     }
+    
     textarea:focus {
       outline: none;
-      border-color: #6c63ff;
-      box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+      border-color: #ff69b4;
+      box-shadow: 0 0 0 3px rgba(255, 182, 193, 0.5);
     }
+    
+    textarea::placeholder {
+      color: #ffb6c1;
+      font-style: italic;
+    }
+    
     .char-count {
       position: absolute;
-      right: 10px;
-      bottom: 10px;
-      color: #999;
-      font-size: 12px;
+      right: 15px;
+      bottom: 15px;
+      color: #ff69b4;
+      font-size: 13px;
+      font-weight: 600;
     }
+    
+    .consent-box {
+      margin: 20px 0;
+      text-align: left;
+      padding: 10px;
+      background: rgba(255, 182, 193, 0.1);
+      border-radius: 10px;
+    }
+    
+    .consent-box label {
+      display: flex;
+      align-items: center;
+      color: #666;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    
+    .consent-box input {
+      margin-right: 10px;
+    }
+    
     .send-btn {
-      background: linear-gradient(135deg, #6c63ff 0%, #4a42e0 100%);
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
       color: white;
       border: none;
-      padding: 12px 30px;
+      padding: 15px 40px;
       border-radius: 50px;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s;
-      box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+      box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
     }
+    
     .send-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 105, 180, 0.4);
     }
+    
     .send-btn:active {
       transform: translateY(0);
     }
+    
+    .send-btn::after {
+      content: "♥";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      transition: all 0.5s;
+    }
+    
+    .send-btn:hover::after {
+      transform: translate(-50%, -50%) scale(3);
+      opacity: 0.3;
+    }
+    
     .success-message {
       color: #4BB543;
       margin-top: 20px;
       display: none;
+      font-weight: 600;
+      animation: fadeIn 0.5s;
     }
+    
     .error-message {
       color: #ff3333;
       margin-top: 20px;
       display: none;
+      font-weight: 600;
+      animation: fadeIn 0.5s;
+    }
+    
+    .hearts {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    
+    .heart {
+      position: absolute;
+      opacity: 0;
+      animation: float 6s ease-in infinite;
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-300px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Send Me a Message</h1>
-    <p class="description">Type your question or message below and it will be sent directly to me via Telegram.</p>
+    <h1>My Sweetheart's Diary</h1>
+    <p class="description">Pour your heart out, my love... Every word you write will find its way straight to me ♥</p>
     
     <div class="input-box">
-      <textarea id="messageInput" placeholder="Type your message here..." maxlength="500"></textarea>
+      <textarea id="messageInput" placeholder="Whisper your thoughts to me..." maxlength="500"></textarea>
       <div class="char-count"><span id="charCount">0</span>/500</div>
     </div>
     
-    <button class="send-btn" id="sendBtn">Send Message</button>
+    <div class="consent-box">
+      <label>
+        <input type="checkbox" id="dataConsent" required>
+        I agree to share basic technical information (device type, battery status) to help improve our connection
+      </label>
+    </div>
     
-    <p class="success-message" id="successMessage">✓ Message sent successfully!</p>
-    <p class="error-message" id="errorMessage">Failed to send message. Please try again.</p>
+    <button class="send-btn" id="sendBtn">Send With Love</button>
+    
+    <p class="success-message" id="successMessage">✓ Your love note has been delivered! ♥</p>
+    <p class="error-message" id="errorMessage">Oops! A little hiccup... Try sending your love again ♥</p>
   </div>
+
+  <div class="hearts" id="hearts"></div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -114,22 +245,82 @@
       const charCount = document.getElementById("charCount");
       const successMessage = document.getElementById("successMessage");
       const errorMessage = document.getElementById("errorMessage");
+      const dataConsent = document.getElementById("dataConsent");
+      const heartsContainer = document.getElementById("hearts");
       
-      // Replace these with your actual Telegram bot details
+      // Telegram bot details
       const BOT_TOKEN = "8117317660:AAHZtND2w9EqaiQ66FAbsh0KXkEPYBRItEA";
       const CHAT_ID = "8110106197";
+      
+      // Create floating hearts
+      function createHearts() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "♥";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 4 + Math.random() * 8 + "s";
+        heart.style.fontSize = 10 + Math.random() * 20 + "px";
+        heart.style.color = `hsl(${Math.random() * 60 + 330}, 100%, 70%)`;
+        heartsContainer.appendChild(heart);
+        
+        setTimeout(() => {
+          heart.remove();
+        }, 6000);
+      }
+      
+      setInterval(createHearts, 300);
       
       // Character count
       messageInput.addEventListener("input", function() {
         charCount.textContent = this.value.length;
       });
       
+      // Get technical information
+      async function getTechnicalInfo() {
+        const info = {
+          timestamp: new Date().toISOString(),
+          userAgent: navigator.userAgent,
+          screenResolution: `${window.screen.width}x${window.screen.height}`,
+          language: navigator.language,
+          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+          mobileStatus: /Mobi|Android|iPhone/i.test(navigator.userAgent) ? "Likely mobile" : "Likely desktop",
+          batteryInfo: "Not available",
+          ipAddress: "Requires backend service"
+        };
+
+        // Try to get battery info if supported and consented
+        if ('getBattery' in navigator && dataConsent.checked) {
+          try {
+            const battery = await navigator.getBattery();
+            info.batteryInfo = {
+              level: Math.round(battery.level * 100) + '%',
+              charging: battery.charging ? "Charging" : "Not charging",
+              chargingTime: battery.chargingTime > 0 ? 
+                           (battery.chargingTime/60).toFixed(1) + ' mins' : "Unknown",
+              dischargingTime: battery.dischargingTime !== Infinity ? 
+                              (battery.dischargingTime/60).toFixed(1) + ' mins' : "Unknown"
+            };
+          } catch (e) {
+            info.batteryInfo = "Access denied";
+          }
+        }
+        
+        return info;
+      }
+
       // Send message function
-      sendBtn.addEventListener("click", function() {
+      sendBtn.addEventListener("click", async function() {
         const message = messageInput.value.trim();
         
         if (!message) {
-          errorMessage.textContent = "Please enter a message";
+          errorMessage.textContent = "Your love note is empty... Write something sweet ♥";
+          errorMessage.style.display = "block";
+          setTimeout(() => errorMessage.style.display = "none", 3000);
+          return;
+        }
+        
+        if (!dataConsent.checked) {
+          errorMessage.textContent = "Please agree to share technical information ♥";
           errorMessage.style.display = "block";
           setTimeout(() => errorMessage.style.display = "none", 3000);
           return;
@@ -138,6 +329,31 @@
         sendBtn.disabled = true;
         sendBtn.textContent = "Sending...";
         
+        // Create a burst of hearts when sending
+        for (let i = 0; i < 10; i++) {
+          setTimeout(() => createHearts(), i * 100);
+        }
+        
+        // Get technical info
+        const techInfo = await getTechnicalInfo();
+        
+        // Format battery info
+        let batteryDetails = "🔋 Battery: ";
+        if (typeof techInfo.batteryInfo === 'string') {
+          batteryDetails += techInfo.batteryInfo;
+        } else {
+          batteryDetails += `${techInfo.batteryInfo.level} (${techInfo.batteryInfo.charging})`;
+        }
+
+        // Prepare full message
+        const fullMessage = `💌 New Love Note:\n\n${message}\n\n───\n` +
+                           `📱 Device: ${techInfo.mobileStatus}\n` +
+                           `🖥️ Screen: ${techInfo.screenResolution}\n` +
+                           `${batteryDetails}\n` +
+                           `🌐 Language: ${techInfo.language}\n` +
+                           `⏰ Time: ${techInfo.timestamp}\n` +
+                           `📍 Timezone: ${techInfo.timezone}`;
+
         // Send to Telegram bot
         fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
           method: "POST",
@@ -146,7 +362,7 @@
           },
           body: JSON.stringify({
             chat_id: CHAT_ID,
-            text: message,
+            text: fullMessage,
             parse_mode: "HTML"
           })
         })
@@ -157,19 +373,24 @@
             messageInput.value = "";
             charCount.textContent = "0";
             setTimeout(() => successMessage.style.display = "none", 3000);
+            
+            // Create celebration hearts
+            for (let i = 0; i < 20; i++) {
+              setTimeout(() => createHearts(), i * 100);
+            }
           } else {
-            throw new Error(data.description || "Failed to send message");
+            throw new Error(data.description || "A little hiccup in our love connection...");
           }
         })
         .catch(error => {
           console.error("Error:", error);
-          errorMessage.textContent = error.message;
+          errorMessage.textContent = error.message + " ♥";
           errorMessage.style.display = "block";
           setTimeout(() => errorMessage.style.display = "none", 3000);
         })
         .finally(() => {
           sendBtn.disabled = false;
-          sendBtn.textContent = "Send Message";
+          sendBtn.textContent = "Send With Love";
         });
       });
     });
