@@ -6,12 +6,12 @@
     <title>Our Love List</title>
     <style>
         :root {
-            --primary: #4a2c2a;
-            --secondary: #6b4e4e;
-            --accent: #e8b4b8;
-            --background: #1e3a5f;
-            --card: #f9fafb;
-            --blood-red: #800000;
+            --primary: #4a2c2a; /* Dark brown for main text */
+            --secondary: #6b4e4e; /* Slightly lighter brown for secondary text */
+            --accent: #e8b4b8; /* Soft pink for accents */
+            --background: #1e3a5f; /* Dark romantic blue background */
+            --card: #f9fafb; /* Very pale gray for list items */
+            --blood-red: #800000; /* Blood red for the button */
         }
 
         * {
@@ -22,7 +22,7 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            font-weight: 500;
+            font-weight: 500; /* Medium bold */
             background-color: var(--background);
             color: var(--primary);
             display: flex;
@@ -86,7 +86,7 @@
             height: 18px;
             margin-right: 10px;
             accent-color: var(--accent);
-            cursor: pointer;
+            cursor: not-allowed;
         }
 
         .item-text {
@@ -104,17 +104,12 @@
             font-size: 0.8em;
             color: var(--secondary);
             margin-left: 10px;
-            cursor: pointer;
-        }
-
-        .date:hover {
-            color: var(--accent);
         }
 
         .message-btn {
             display: block;
             background-color: var(--blood-red);
-            color: #ffffff;
+            color: #ffffff; /* White text for visibility */
             border: none;
             padding: 10px;
             border-radius: 8px;
@@ -124,150 +119,12 @@
             margin: 20px auto;
             width: 100%;
             transition: background-color 0.2s;
-            opacity: 0;
-            animation: none;
+            opacity: 0; /* Initially hidden */
+            animation: none; /* Disable default animation */
         }
 
         .message-btn:hover {
-            background-color: #660000;
-        }
-
-        .admin-btn {
-            background-color: var(--primary);
-            color: var(--card);
-            border: none;
-            padding: 8px;
-            border-radius: 8px;
-            font-size: 0.85em;
-            cursor: pointer;
-            display: block;
-            margin: 15px auto;
-            width: 100%;
-            text-align: center;
-        }
-
-        .admin-btn:hover {
-            background-color: #6b4e4e;
-        }
-
-        .admin-panel {
-            background-color: var(--primary);
-            color: var(--card);
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            display: none;
-        }
-
-        .admin-panel h3 {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-
-        .password-input {
-            display: flex;
-            margin-bottom: 15px;
-        }
-
-        .password-input input {
-            flex-grow: 1;
-            padding: 8px;
-            border: none;
-            border-radius: 5px 0 0 5px;
-            font-family: inherit;
-            color: var(--card);
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .password-input button {
-            background-color: var(--accent);
-            color: var(--card);
-            border: none;
-            padding: 8px 15px;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
-        }
-
-        .password-input button:hover {
-            background-color: #d9a3a7;
-        }
-
-        .admin-controls {
-            display: none;
-        }
-
-        .admin-items div {
-            margin-bottom: 15px;
-        }
-
-        .admin-items input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--card);
-            margin-bottom: 5px;
-        }
-
-        .admin-items input[type="checkbox"] {
-            margin-right: 10px;
-        }
-
-        .admin-items input[type="date"] {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--card);
-            font-family: inherit;
-        }
-
-        .admin-items input[type="date"]:disabled {
-            background-color: rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .admin-alert {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: var(--card);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            text-align: center;
-            max-width: 300px;
-            display: none;
-        }
-
-        .admin-alert h3 {
-            color: var(--accent);
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-
-        .admin-alert button {
-            background-color: var(--primary);
-            color: var(--card);
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            display: none;
+            background-color: #660000; /* Darker blood red on hover */
         }
 
         footer {
@@ -276,138 +133,44 @@
             color: var(--secondary);
             margin-top: 20px;
         }
-
-        .loading {
-            text-align: center;
-            margin: 20px 0;
-            color: var(--secondary);
-        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="overlay" id="overlay"></div>
-    <div class="admin-alert" id="adminAlert">
-        <h3>Admin Access Required</h3>
-        <p>Only Admin <span style="color: var(--accent);">ZIDHUXD</span> can edit this list.</p>
-        <button onclick="closeAdminAlert()">OK</button>
-    </div>
-
     <div class="container">
         <h1>Our Love List ♥️</h1>
         <div class="subtitle">Moments we're together 🫂</div>
 
         <div class="divider"></div>
 
-        <div id="loading" class="loading">
-            <i class="fas fa-spinner fa-spin"></i> Loading our love story...
-        </div>
-
-        <div class="bucket-list" id="bucketList" style="display: none;">
+        <div class="bucket-list" id="bucketList">
             <!-- List items added by JavaScript -->
         </div>
 
         <button class="message-btn" id="nextPageBtn" onclick="window.location.href='msg.html'">
             <i class="fas fa-arrow-right"></i> Next Page
         </button>
-
-        <button class="admin-btn" onclick="showAdminPanel()">
-            <i class="fas fa-lock"></i> Admin
-        </button>
-
-        <div class="admin-panel" id="adminPanel">
-            <h3>Admin Panel</h3>
-            <div id="passwordSection">
-                <div class="password-input">
-                    <input type="password" id="adminPassword" placeholder="Password">
-                    <button onclick="checkPassword()">Unlock</button>
-                </div>
-            </div>
-            <div class="admin-controls" id="adminControls">
-                <h4>Edit List</h4>
-                <div class="admin-items" id="adminItems"></div>
-                <button onclick="saveAdminChanges()" style="background-color: var(--accent); padding: 8px; border-radius: 5px; color: var(--card); border: none; width: 100%; margin-top: 15px;">
-                    <i class="fas fa-save"></i> Save
-                </button>
-            </div>
-        </div>
     </div>
 
     <script>
-        // Telegram bot details
-        const BOT_TOKEN = "8117317660:AAHZtND2w9EqaiQ66FAbsh0KXkEPYBRItEA";
-        const CHAT_ID = "8110106197";
-        const STORAGE_KEY = "love_list_data";
-        const ADMIN_PASSWORD = "1133";
-
-        // Default bucket list items
-        const defaultBucketListItems = [
+        const bucketListItems = [
             { id: 1, text: "First Messaged", completed: false, date: null },
+
             { id: 2, text: "Committed", completed: false, date: null },
+
             { id: 3, text: "First Call", completed: false, date: null },
+
             { id: 4, text: "First Game Date", completed: false, date: null },
+
             { id: 5, text: "Meet in real life", completed: false, date: null },
+
             { id: 6, text: "Marriage", completed: false, date: null },
+
             { id: 7, text: "Travel around the world", completed: false, date: null },
+
             { id: 8, text: "Have a great family", completed: false, date: null }
         ];
-
-        let bucketListItems = [];
-
-        // Load data from Telegram storage
-        async function loadData() {
-            try {
-                // First try to get data from Telegram
-                const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getUpdates`);
-                const data = await response.json();
-                
-                // Find the most recent message with our storage data
-                const storageMessage = data.result?.reverse().find(msg => 
-                    msg.message?.text?.includes(STORAGE_KEY)
-                );
-                
-                if (storageMessage) {
-                    const jsonString = storageMessage.message.text.split(STORAGE_KEY)[1];
-                    bucketListItems = JSON.parse(jsonString);
-                } else {
-                    // Fallback to local storage if no Telegram data
-                    const localData = localStorage.getItem(STORAGE_KEY);
-                    bucketListItems = localData ? JSON.parse(localData) : [...defaultBucketListItems];
-                }
-            } catch (error) {
-                console.error("Error loading data:", error);
-                // Fallback to local storage if error
-                const localData = localStorage.getItem(STORAGE_KEY);
-                bucketListItems = localData ? JSON.parse(localData) : [...defaultBucketListItems];
-            }
-            
-            displayBucketList();
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('bucketList').style.display = 'block';
-        }
-
-        // Save data to Telegram and local storage
-        async function saveData() {
-            const dataString = JSON.stringify(bucketListItems);
-            
-            // Save to Telegram
-            try {
-                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        chat_id: CHAT_ID,
-                        text: STORAGE_KEY + dataString
-                    })
-                });
-            } catch (error) {
-                console.error("Error saving to Telegram:", error);
-            }
-            
-            // Also save to local storage as fallback
-            localStorage.setItem(STORAGE_KEY, dataString);
-        }
 
         function displayBucketList() {
             const bucketListElement = document.getElementById('bucketList');
@@ -421,10 +184,7 @@
                 checkbox.type = 'checkbox';
                 checkbox.className = 'checkbox';
                 checkbox.checked = item.completed;
-                checkbox.onchange = function() {
-                    showAdminAlert();
-                    this.checked = item.completed;
-                };
+                checkbox.disabled = true; // Disable checkboxes for all users
 
                 const textElement = document.createElement('span');
                 textElement.className = `item-text ${item.completed ? 'completed' : ''}`;
@@ -434,7 +194,6 @@
                 dateElement.className = 'date';
                 if (item.completed && item.date) {
                     dateElement.textContent = formatDate(item.date);
-                    dateElement.onclick = () => editDate(item);
                 }
 
                 itemElement.appendChild(checkbox);
@@ -448,112 +207,14 @@
             return new Date(dateString).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
         }
 
-        function editDate(item) {
-            const currentDate = item.date?.split('T')[0] || '';
-            const newDate = prompt("Edit completion date (YYYY-MM-DD):", currentDate);
-            if (newDate) {
-                item.date = new Date(newDate).toISOString();
-                saveData();
-                displayBucketList();
-            }
-        }
-
-        function showAdminPanel() {
-            document.getElementById('adminPanel').style.display = 'block';
-            document.getElementById('adminControls').style.display = 'none';
-            document.getElementById('passwordSection').style.display = 'block';
-            document.getElementById('adminPassword').value = '';
-        }
-
-        function checkPassword() {
-            const password = document.getElementById('adminPassword').value;
-            if (password === ADMIN_PASSWORD) {
-                document.getElementById('passwordSection').style.display = 'none';
-                document.getElementById('adminControls').style.display = 'block';
-                displayAdminItems();
-            } else {
-                alert("Incorrect password");
-            }
-        }
-
-        function displayAdminItems() {
-            const adminItemsElement = document.getElementById('adminItems');
-            adminItemsElement.innerHTML = '';
-
-            bucketListItems.forEach(item => {
-                const itemContainer = document.createElement('div');
-
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.id = `admin-check-${item.id}`;
-                checkbox.checked = item.completed;
-                checkbox.onchange = function() {
-                    const dateInput = document.getElementById(`admin-date-${item.id}`);
-                    dateInput.disabled = !this.checked;
-                    if (!this.checked) dateInput.value = '';
-                };
-
-                const textInput = document.createElement('input');
-                textInput.type = 'text';
-                textInput.value = item.text;
-                textInput.id = `admin-text-${item.id}`;
-
-                const dateInput = document.createElement('input');
-                dateInput.type = 'date';
-                dateInput.id = `admin-date-${item.id}`;
-                dateInput.value = item.date ? item.date.split('T')[0] : '';
-                dateInput.disabled = !item.completed;
-
-                itemContainer.appendChild(checkbox);
-                itemContainer.appendChild(textInput);
-                itemContainer.appendChild(dateInput);
-                adminItemsElement.appendChild(itemContainer);
-            });
-        }
-
-        async function saveAdminChanges() {
-            bucketListItems.forEach(item => {
-                const checkbox = document.getElementById(`admin-check-${item.id}`);
-                const textInput = document.getElementById(`admin-text-${item.id}`);
-                const dateInput = document.getElementById(`admin-date-${item.id}`);
-
-                item.completed = checkbox.checked;
-                item.text = textInput.value;
-
-                if (item.completed && dateInput.value) {
-                    item.date = new Date(dateInput.value).toISOString();
-                } else if (item.completed && !item.date) {
-                    item.date = new Date().toISOString();
-                } else {
-                    item.date = null;
-                }
-            });
-
-            await saveData();
-            displayBucketList();
-            document.getElementById('adminPanel').style.display = 'none';
-            alert("Changes saved and synced to all devices!");
-        }
-
-        function showAdminAlert() {
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('adminAlert').style.display = 'block';
-        }
-
-        function closeAdminAlert() {
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('adminAlert').style.display = 'none';
-        }
-
-        // Initialize the page
+        // Show the "Next Page" button after 5 seconds
         window.onload = function() {
-            loadData();
-            
             setTimeout(() => {
                 const nextPageBtn = document.getElementById('nextPageBtn');
                 nextPageBtn.style.opacity = '1';
                 nextPageBtn.style.transition = 'opacity 0.5s ease-in';
             }, 5000);
+            displayBucketList();
         };
     </script>
 </body>
