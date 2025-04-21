@@ -17,7 +17,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      /* Adjust for safe area */
       padding-top: env(safe-area-inset-top);
     }
     .card {
@@ -27,9 +26,8 @@
       max-width: 400px;
       width: 90%;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      /* Initially hidden */
       opacity: 0;
-      animation: fadeIn 2s ease-in-out forwards; /* 1-second duration, no delay */
+      animation: fadeIn 2s ease-in-out forwards;
     }
     @keyframes fadeIn {
       from {
@@ -87,28 +85,26 @@
       font-style: italic;
       margin-top: 15px;
     }
-    /* Hidden audio player */
     #bgMusic {
       position: absolute;
       opacity: 0;
       pointer-events: none;
     }
-    /* Safe area support */
-    @supports (-webkit-overflow-scrolling: touch) {
-      body {
-        padding-top: constant(safe-area-inset-top);
-      }
-      .card {
-        margin-top: constant(safe-area-inset-top);
-      }
-    }
-    @supports (padding: max(0px)) {
-      body {
-        padding-top: env(safe-area-inset-top);
-      }
-      .card {
-        margin-top: env(safe-area-inset-top);
-      }
+    .mute-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 100;
     }
   </style>
 </head>
@@ -130,24 +126,59 @@
     <p class="plea">Don't click no pls<3</p>
   </div>
 
+  <!-- Mute Toggle Button -->
+  <button class="mute-toggle" id="muteToggle">🔊</button>
+
   <!-- Background Music -->
   <audio id="bgMusic" loop>
     <source src="congratulationsx.mp3" type="audio/mpeg">
   </audio>
 
   <script>
-    // Music player (auto-plays quietly)
     document.addEventListener('DOMContentLoaded', function() {
       const music = document.getElementById('bgMusic');
-      music.volume = 0.3; // 20% volume
+      const muteToggle = document.getElementById('muteToggle');
+      let isMuted = false;
       
-      // Auto-play with fallback to click-to-play
-      const playPromise = music.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          document.addEventListener('click', () => music.play(), { once: true });
-        });
+      // Set volume to 30%
+      music.volume = 0.3;
+      
+      // Multiple techniques to force autoplay
+      function forcePlay() {
+        // Technique 1: Direct play with promise
+        const playPromise = music.play();
+        
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            // Technique 2: Try again after a small delay
+            setTimeout(() => music.play(), 500);
+            
+            // Technique 3: Trigger on first user interaction
+            document.addEventListener('click', function firstClick() {
+              music.play();
+              document.removeEventListener('click', firstClick);
+            }, { once: true });
+          });
+        }
       }
+      
+      // Initial play attempt
+      forcePlay();
+      
+      // Mute toggle functionality
+      muteToggle.addEventListener('click', function() {
+        isMuted = !isMuted;
+        music.muted = isMuted;
+        muteToggle.textContent = isMuted ? "🔇" : "🔊";
+      });
+      
+      // If still not playing after 1 second, show visual cue
+      setTimeout(() => {
+        if (music.paused) {
+          muteToggle.style.display = 'flex';
+          muteToggle.textContent = "▶️";
+        }
+      }, 1000);
     });
 
     // Button interaction
