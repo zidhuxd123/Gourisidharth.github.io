@@ -41,13 +41,13 @@
       margin: 20px auto;
       display: block;
       border-radius: 10px;
-      cursor: pointer;
-      border: 3px solid #C70039; /* Added red border */
+      cursor: default;
+      border: 3px solid #C70039;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
     .milestone {
       font-size: 1.1em;
-      color: #5c4033;
+      color: #A52A2A; /* Deep red-brown */
       margin: 15px 0;
       padding: 10px;
       background: rgba(230, 218, 218, 0.5);
@@ -58,9 +58,9 @@
       background: rgba(230, 218, 218, 0.8);
     }
     .note {
-      font-size: 1.1em;
-      color: #C70039;
-      font-weight: bold;
+      font-size: 1em;
+      color: #FF6F61; /* Soft coral pink */
+      font-weight: 600;
       margin: 10px 0;
       font-family: 'Poppins', sans-serif;
     }
@@ -77,12 +77,12 @@
       border-radius: 8px;
       font-size: 1em;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, opacity 0.5s ease; /* Added opacity transition */
+      opacity: 0; /* Initially hidden */
     }
     button:hover {
       background: #7a5e4d;
     }
-    /* Style for audio control button */
     .audio-control {
       text-align: center;
       margin: 10px 0;
@@ -95,12 +95,12 @@
       border: none;
       padding: 8px 16px;
       border-radius: 8px;
-      cursor: pointer;
       font-size: 0.9em;
+      cursor: pointer;
       transition: background 0.3s ease;
     }
     .audio-control button:hover {
-      background: #a50030;
+      background: #e6335c;
     }
     @supports (-webkit-overflow-scrolling: touch) {
       body {
@@ -126,7 +126,7 @@
   <div class="container">
     <h1>Fights?</h1>
     <img src="funnycat.gif" alt="Funny GIF" class="gif" onerror="this.style.display='none';">
-    <!-- Audio control button (visible initially) -->
+    <div class="note">I wanna say something about it ; )</div>
     <div class="audio-control" id="audioControl">
       <button onclick="playAudio()">Play Background Music</button>
     </div>
@@ -134,11 +134,10 @@
     <div class="milestone">No matter what happens at the end of the day, we both go to sleep kissing each other♥️</div>
     <div class="milestone">Who's gonna stop us from loving each other!?</div>
     <div class="button">
-      <button onclick="window.location.href='datexd.html'">Click here if you understood everything!</button>
+      <button id="nextPageBtn" onclick="window.location.href='datexd.html'">Click here if you understood everything!</button>
     </div>
   </div>
 
-  <!-- Audio element for background music -->
   <audio id="backgroundMusic" loop>
     <source src="dessertg.mp3" type="audio/mp3">
     Your browser does not support the audio element.
@@ -148,6 +147,7 @@
     document.addEventListener("DOMContentLoaded", function() {
       const audio = document.getElementById("backgroundMusic");
       const audioControl = document.getElementById("audioControl");
+      const nextPageBtn = document.getElementById("nextPageBtn");
 
       // Set low volume (0.2 = 20% volume)
       audio.volume = 0.2;
@@ -181,6 +181,11 @@
             console.log('Error playing audio:', error);
           });
       }
+
+      // Fade in the "Click here" button after 6 seconds
+      setTimeout(() => {
+        nextPageBtn.style.opacity = '1';
+      }, 6000);
 
       // Start audio on page load
       tryPlayAudio();
