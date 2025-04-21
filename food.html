@@ -3,273 +3,340 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Love Bucket List 🌹</title>
+    <title>Our Love Bucket List ♥️</title>
     <style>
         :root {
-            --primary: #5c3a21;
-            --secondary: #8b5a2b;
-            --accent: #d23669;
-            --light: #f8f1e9;
-            --dark: #3a2c1a;
+            --primary: #4a2c2a; /* Dark brown for main text */
+            --secondary: #6b4e4e; /* Slightly lighter brown for secondary text */
+            --accent: #e8b4b8; /* Soft pink for accents */
+            --background: #1e3a5f; /* Dark romantic blue background */
+            --card: #f9fafb; /* Very pale gray for list items */
         }
-        
-        body {
-            font-family: 'Playfair Display', serif;
-            background-color: var(--light);
-            color: var(--dark);
+
+        * {
             margin: 0;
             padding: 0;
-            background-image: url('https://www.transparenttextures.com/patterns/rice-paper.png');
+            box-sizing: border-box;
         }
-        
-        .container {
-            max-width: 750px;
-            margin: 40px auto;
-            padding: 30px;
-            background-color: rgba(255, 253, 250, 0.9);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(92, 58, 33, 0.1);
-            border: 1px solid rgba(92, 58, 33, 0.1);
-        }
-        
-        h1 {
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500; /* Medium bold */
+            background-color: var(--background);
             color: var(--primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            background-color: var(--card);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 1.8em;
             text-align: center;
-            font-size: 2.8em;
+            color: var(--primary);
             margin-bottom: 10px;
-            font-weight: 700;
-            letter-spacing: 1px;
         }
-        
+
         .subtitle {
-            text-align: center;
-            font-style: italic;
+            font-size: 0.9em;
             color: var(--secondary);
-            margin-bottom: 30px;
-            font-size: 1.1em;
+            text-align: center;
+            margin-bottom: 20px;
         }
-        
+
         .divider {
             height: 1px;
-            background: linear-gradient(to right, transparent, var(--secondary), transparent);
-            margin: 25px 0;
+            background: var(--secondary);
             opacity: 0.3;
+            margin: 15px 0;
         }
-        
+
         .bucket-list {
-            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
-        
+
         .list-item {
             display: flex;
             align-items: center;
-            padding: 15px 20px;
-            margin: 10px 0;
-            background-color: white;
+            padding: 10px;
+            background-color: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(92, 58, 33, 0.05);
-            transition: all 0.3s ease;
-            border-left: 3px solid var(--secondary);
+            transition: transform 0.2s ease;
         }
-        
+
         .list-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(92, 58, 33, 0.1);
+            transform: translateY(-1px);
         }
-        
+
         .checkbox {
-            width: 22px;
-            height: 22px;
-            margin-right: 15px;
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
             accent-color: var(--accent);
             cursor: pointer;
         }
-        
+
         .item-text {
+            font-size: 0.95em;
             flex-grow: 1;
-            font-size: 1.1em;
             color: var(--primary);
         }
-        
+
         .completed {
             text-decoration: line-through;
             color: var(--secondary);
-            opacity: 0.7;
         }
-        
+
         .date {
-            font-size: 0.85em;
+            font-size: 0.8em;
             color: var(--secondary);
-            margin-left: 15px;
-            font-style: italic;
+            margin-left: 10px;
             cursor: pointer;
-            transition: all 0.2s;
         }
-        
+
         .date:hover {
             color: var(--accent);
-            text-decoration: underline;
         }
-        
+
+        .message-btn {
+            display: block;
+            background-color: var(--accent);
+            color: var(--card);
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            text-align: center;
+            cursor: pointer;
+            margin: 20px auto;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+
+        .message-btn:hover {
+            background-color: #d9a3a7;
+        }
+
+        .admin-btn {
+            background-color: var(--primary);
+            color: var(--card);
+            border: none;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 0.85em;
+            cursor: pointer;
+            display: block;
+            margin: 15px auto;
+            width: 100%;
+            text-align: center;
+        }
+
+        .admin-btn:hover {
+            background-color: #6b4e4e;
+        }
+
         .admin-panel {
             background-color: var(--primary);
-            color: var(--light);
-            padding: 25px;
-            border-radius: 10px;
-            margin-top: 40px;
+            color: var(--card);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
             display: none;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
         }
-        
+
         .admin-panel h3 {
-            margin-top: 0;
-            color: var(--light);
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            padding-bottom: 10px;
+            font-size: 1.2em;
+            margin-bottom: 10px;
         }
-        
+
         .password-input {
             display: flex;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
-        
+
         .password-input input {
             flex-grow: 1;
-            padding: 10px 15px;
+            padding: 8px;
             border: none;
             border-radius: 5px 0 0 5px;
             font-family: inherit;
+            color: var(--card);
+            background-color: rgba(255, 255, 255, 0.1);
         }
-        
+
         .password-input button {
             background-color: var(--accent);
-            color: white;
+            color: var(--card);
             border: none;
-            padding: 0 20px;
+            padding: 8px 15px;
             border-radius: 0 5px 5px 0;
             cursor: pointer;
-            transition: all 0.2s;
         }
-        
+
         .password-input button:hover {
-            background-color: #b82a57;
+            background-color: #d9a3a7;
         }
-        
+
         .admin-controls {
             display: none;
         }
-        
-        .admin-btn {
-            background-color: var(--primary);
-            color: var(--light);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            display: block;
-            margin: 30px auto 0;
+
+        .admin-items div {
+            margin-bottom: 15px;
+        }
+
+        .admin-items input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--card);
+            margin-bottom: 5px;
+        }
+
+        .admin-items input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .admin-items input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--card);
             font-family: inherit;
-            transition: all 0.3s;
-            box-shadow: 0 3px 10px rgba(92, 58, 33, 0.3);
         }
-        
-        .admin-btn:hover {
-            background-color: var(--secondary);
-            transform: translateY(-2px);
+
+        .admin-items input[type="date"]:disabled {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.5);
         }
-        
-        .floating-hearts {
+
+        .admin-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--card);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-align: center;
+            max-width: 300px;
+            display: none;
+        }
+
+        .admin-alert h3 {
+            color: var(--accent);
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .admin-alert button {
+            background-color: var(--primary);
+            color: var(--card);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            z-index: -1;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
         }
-        
-        .heart {
-            position: absolute;
-            opacity: 0;
-            font-size: 20px;
-            color: rgba(210, 54, 105, 0.3);
-            animation: float 8s ease-in infinite;
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.5;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-        
+
         footer {
             text-align: center;
-            margin-top: 50px;
+            font-size: 0.8em;
             color: var(--secondary);
-            font-size: 0.9em;
+            margin-top: 20px;
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="floating-hearts" id="hearts-container"></div>
-    
+    <div class="overlay" id="overlay"></div>
+    <div class="admin-alert" id="adminAlert">
+        <h3>Admin Access</h3>
+        <p>Only Admin <span style="color: var(--accent);">ZIDHUXD</span> can edit this list.</p>
+        <button onclick="closeAdminAlert()">OK</button>
+    </div>
+
     <div class="container">
-        <h1>Our Love Bucket List</h1>
-        <div class="subtitle">All the adventures we'll share together</div>
-        
+        <h1>Our Love Bucket lists ♥️</h1>
+        <div class="subtitle">Moments we'll cherish</div>
+
         <div class="divider"></div>
-        
+
         <div class="bucket-list" id="bucketList">
-            <!-- List items will be added here by JavaScript -->
+            <!-- List items added by JavaScript -->
         </div>
-        
-        <button class="admin-btn" onclick="showAdminPanel()">Admin Settings</button>
-        
+
+        <button class="message-btn" onclick="window.location.href='msg.html'">
+            <i class="fas fa-envelope"></i> Sweet Message
+        </button>
+
+        <button class="admin-btn" onclick="showAdminPanel()">
+            <i class="fas fa-lock"></i> Admin
+        </button>
+
         <div class="admin-panel" id="adminPanel">
             <h3>Admin Panel</h3>
             <div id="passwordSection">
                 <div class="password-input">
-                    <input type="password" id="adminPassword" placeholder="Enter password">
+                    <input type="password" id="adminPassword" placeholder="Password">
                     <button onclick="checkPassword()">Unlock</button>
                 </div>
             </div>
             <div class="admin-controls" id="adminControls">
-                <h4>Edit Items</h4>
-                <div id="adminItems"></div>
-                <button onclick="saveAdminChanges()" style="background-color: var(--accent); margin-top: 20px;">Save Changes</button>
+                <h4>Edit List</h4>
+                <div class="admin-items" id="adminItems"></div>
+                <button onclick="saveAdminChanges()" style="background-color: var(--accent); padding: 8px; border-radius: 5px; color: var(--card); border: none; width: 100%; margin-top: 15px;">
+                    <i class="fas fa-save"></i> Save
+                </button>
             </div>
         </div>
-        
-        <footer>
-            Made with ♥ for the love of my life
-        </footer>
+
+        <footer>Made with ♥ for you</footer>
     </div>
-    
+
     <script>
-        // Bucket list items
         const bucketListItems = [
-            { id: 1, text: "Watch the sunrise together on a beach", completed: false, date: null },
-            { id: 2, text: "Take a cooking class together", completed: false, date: null },
-            { id: 3, text: "Go stargazing in the countryside", completed: false, date: null },
-            { id: 4, text: "Write love letters to each other", completed: false, date: null },
-            { id: 5, text: "Have a picnic in a flower field", completed: false, date: null },
-            { id: 6, text: "Travel to a new country together", completed: false, date: null },
+            { id: 1, text: "Watch a beach sunrise", completed: false, date: null },
+            { id: 2, text: "Take a cooking class", completed: false, date: null },
+            { id: 3, text: "Stargaze in the countryside", completed: false, date: null },
+            { id: 4, text: "Write love letters", completed: false, date: null },
+            { id: 5, text: "Picnic in a flower field", completed: false, date: null },
+            { id: 6, text: "Travel to a new country", completed: false, date: null },
             { id: 7, text: "Dance in the rain", completed: false, date: null },
-            { id: 8, text: "Create a time capsule to open in 5 years", completed: false, date: null }
+            { id: 8, text: "Make a 5-year time capsule", completed: false, date: null }
         ];
-        
+
         const ADMIN_PASSWORD = "1133";
-        
-        // Load saved data from localStorage
+
         function loadSavedData() {
             const savedData = localStorage.getItem('bucketListData');
             if (savedData) {
@@ -283,55 +350,48 @@
                 });
             }
         }
-        
-        // Display the bucket list
+
         function displayBucketList() {
             const bucketListElement = document.getElementById('bucketList');
             bucketListElement.innerHTML = '';
-            
+
             bucketListItems.forEach(item => {
                 const itemElement = document.createElement('div');
                 itemElement.className = 'list-item';
-                
+
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
                 checkbox.className = 'checkbox';
                 checkbox.checked = item.completed;
                 checkbox.onchange = function() {
-                    item.completed = this.checked;
-                    item.date = this.checked ? new Date().toISOString() : null;
-                    saveData();
-                    displayBucketList();
+                    showAdminAlert();
+                    this.checked = item.completed;
                 };
-                
+
                 const textElement = document.createElement('span');
                 textElement.className = `item-text ${item.completed ? 'completed' : ''}`;
                 textElement.textContent = item.text;
-                
+
                 const dateElement = document.createElement('span');
                 dateElement.className = 'date';
                 if (item.completed && item.date) {
-                    dateElement.textContent = `Completed on ${formatDate(item.date)}`;
-                    dateElement.onclick = function() {
-                        editDate(item);
-                    };
+                    dateElement.textContent = formatDate(item.date);
+                    dateElement.onclick = () => editDate(item);
                 }
-                
+
                 itemElement.appendChild(checkbox);
                 itemElement.appendChild(textElement);
                 itemElement.appendChild(dateElement);
-                
                 bucketListElement.appendChild(itemElement);
             });
         }
-        
+
         function formatDate(dateString) {
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            return new Date(dateString).toLocaleDateString(undefined, options);
+            return new Date(dateString).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
         }
-        
+
         function editDate(item) {
-            const currentDate = item.date.split('T')[0];
+            const currentDate = item.date?.split('T')[0] || '';
             const newDate = prompt("Edit completion date (YYYY-MM-DD):", currentDate);
             if (newDate) {
                 item.date = new Date(newDate).toISOString();
@@ -339,19 +399,18 @@
                 displayBucketList();
             }
         }
-        
+
         function saveData() {
             localStorage.setItem('bucketListData', JSON.stringify(bucketListItems));
         }
-        
-        // Admin functions
+
         function showAdminPanel() {
             document.getElementById('adminPanel').style.display = 'block';
             document.getElementById('adminControls').style.display = 'none';
             document.getElementById('passwordSection').style.display = 'block';
             document.getElementById('adminPassword').value = '';
         }
-        
+
         function checkPassword() {
             const password = document.getElementById('adminPassword').value;
             if (password === ADMIN_PASSWORD) {
@@ -362,92 +421,77 @@
                 alert("Incorrect password");
             }
         }
-        
+
         function displayAdminItems() {
             const adminItemsElement = document.getElementById('adminItems');
             adminItemsElement.innerHTML = '';
-            
+
             bucketListItems.forEach(item => {
                 const itemContainer = document.createElement('div');
-                itemContainer.style.marginBottom = '15px';
-                itemContainer.style.paddingBottom = '15px';
-                itemContainer.style.borderBottom = '1px dashed rgba(255,255,255,0.1)';
-                
+
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
                 checkbox.id = `admin-check-${item.id}`;
                 checkbox.checked = item.completed;
-                checkbox.style.marginRight = '10px';
-                
+                checkbox.onchange = function() {
+                    const dateInput = document.getElementById(`admin-date-${item.id}`);
+                    dateInput.disabled = !this.checked;
+                    if (!this.checked) dateInput.value = '';
+                };
+
                 const textInput = document.createElement('input');
                 textInput.type = 'text';
                 textInput.value = item.text;
-                textInput.style.width = 'calc(100% - 40px)';
-                textInput.style.padding = '8px';
-                textInput.style.borderRadius = '4px';
-                textInput.style.border = '1px solid rgba(255,255,255,0.2)';
-                textInput.style.backgroundColor = 'rgba(0,0,0,0.1)';
-                textInput.style.color = 'white';
-                
-                const dateLabel = document.createElement('div');
-                dateLabel.style.fontSize = '0.8em';
-                dateLabel.style.marginTop = '5px';
-                dateLabel.style.color = 'rgba(255,255,255,0.7)';
-                
-                if (item.completed && item.date) {
-                    dateLabel.textContent = `Currently completed on: ${formatDate(item.date)}`;
-                } else {
-                    dateLabel.textContent = 'Not completed yet';
-                }
-                
+
+                const dateInput = document.createElement('input');
+                dateInput.type = 'date';
+                dateInput.id = `admin-date-${item.id}`;
+                dateInput.value = item.date ? item.date.split('T')[0] : '';
+                dateInput.disabled = !item.completed;
+
                 itemContainer.appendChild(checkbox);
                 itemContainer.appendChild(textInput);
-                itemContainer.appendChild(dateLabel);
+                itemContainer.appendChild(dateInput);
                 adminItemsElement.appendChild(itemContainer);
             });
         }
-        
+
         function saveAdminChanges() {
             bucketListItems.forEach(item => {
                 const checkbox = document.getElementById(`admin-check-${item.id}`);
                 const textInput = checkbox.nextElementSibling;
-                
+                const dateInput = document.getElementById(`admin-date-${item.id}`);
+
                 item.completed = checkbox.checked;
                 item.text = textInput.value;
-                
-                if (item.completed && !item.date) {
+
+                if (item.completed && dateInput.value) {
+                    item.date = new Date(dateInput.value).toISOString();
+                } else if (item.completed && !item.date) {
                     item.date = new Date().toISOString();
-                } else if (!item.completed) {
+                } else {
                     item.date = null;
                 }
             });
-            
+
             saveData();
             displayBucketList();
             document.getElementById('adminPanel').style.display = 'none';
-            alert("Changes saved successfully!");
+            alert("Changes saved!");
         }
-        
-        // Create floating hearts
-        function createHearts() {
-            const container = document.getElementById('hearts-container');
-            const heartCount = 15;
-            
-            for (let i = 0; i < heartCount; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'heart';
-                heart.innerHTML = '❤';
-                heart.style.left = `${Math.random() * 100}%`;
-                heart.style.top = `${Math.random() * 100 + 100}%`;
-                heart.style.animationDelay = `${Math.random() * 5}s`;
-                container.appendChild(heart);
-            }
+
+        function showAdminAlert() {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('adminAlert').style.display = 'block';
         }
-        
-        // Initialize the page
+
+        function closeAdminAlert() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('adminAlert').style.display = 'none';
+        }
+
         loadSavedData();
         displayBucketList();
-        createHearts();
     </script>
 </body>
 </html>
