@@ -182,72 +182,79 @@
     </button>
     
     <script>
-        // Create floating pixel hearts
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.className = 'pixel-heart';
-            
-            // Random position
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.bottom = '-20px';
-            
-            // Random size
-            const size = Math.random() * 20 + 10;
-            heart.style.width = size + 'px';
-            heart.style.height = size + 'px';
-            
-            // Random animation duration
-            heart.style.animationDuration = Math.random() * 3 + 3 + 's';
-            
-            document.body.appendChild(heart);
-            
-            // Remove heart after animation
-            setTimeout(() => {
-                heart.remove();
-            }, 4000);
-        }
+    // Create floating pixel hearts
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.className = 'pixel-heart';
         
-        // Generate hearts every 0.5s
-        setInterval(createHeart, 500);
+        // Random position
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.bottom = '-20px';
         
-        // BGM Toggle
-        const mainBgm = document.getElementById('mainBgm');
-        const gameDateBgm = document.getElementById('gameDateBgm');
-        const musicBtn = document.getElementById('musicBtn');
-        let isPlaying = false;
+        // Random size
+        const size = Math.random() * 20 + 10;
+        heart.style.width = size + 'px';
+        heart.style.height = size + 'px';
         
-        musicBtn.addEventListener('click', () => {
-            isPlaying = !isPlaying;
-            if (isPlaying) {
-                mainBgm.play();
-                musicBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-            } else {
-                mainBgm.pause();
-                musicBtn.innerHTML = '<i class="fas fa-music"></i>';
-            }
-        });
+        // Random animation duration
+        heart.style.animationDuration = Math.random() * 3 + 3 + 's';
         
-        // Image click handler
-        const gameImage = document.getElementById('gameImage');
-        gameImage.addEventListener('click', () => {
-            // Stop main BGM if playing
+        document.body.appendChild(heart);
+        
+        // Remove heart after animation
+        setTimeout(() => {
+            heart.remove();
+        }, 4000);
+    }
+    
+    // Generate hearts every 0.5s
+    setInterval(createHeart, 500);
+    
+    // BGM Toggle
+    const mainBgm = document.getElementById('mainBgm');
+    const gameDateBgm = document.getElementById('gameDateBgm');
+    const musicBtn = document.getElementById('musicBtn');
+    let isPlaying = false;
+    
+    musicBtn.addEventListener('click', () => {
+        isPlaying = !isPlaying;
+        if (isPlaying) {
+            mainBgm.play();
+            musicBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+        } else {
             mainBgm.pause();
-            isPlaying = false;
             musicBtn.innerHTML = '<i class="fas fa-music"></i>';
-            
-            // Play game date BGM
-            gameDateBgm.play();
-            
-            // Show magic effect (you can enhance this further)
-            alert("Magic is happening! The special soundtrack is playing now ♡");
-        });
+        }
+    });
+    
+    // Image click handler
+    const gameImage = document.getElementById('gameImage');
+    gameImage.addEventListener('click', () => {
+        // Stop main BGM if playing
+        mainBgm.pause();
+        isPlaying = false;
+        musicBtn.innerHTML = '<i class="fas fa-music"></i>';
         
-        // Next page button
-        const nextPageBtn = document.getElementById('nextPageBtn');
-        nextPageBtn.addEventListener('click', () => {
-            // You can replace this with actual navigation
-            alert("This would navigate to the next page. Add your navigation logic here.");
-        });
+        // Play game date BGM
+        gameDateBgm.play();
+        
+        // Show magic effect (you can enhance this further)
+        alert("Magic is happening! The special soundtrack is playing now ♡");
+    });
+    
+    // Delay showing the "Next page" button
+    const nextPageBtn = document.getElementById('nextPageBtn');
+    nextPageBtn.style.display = 'none'; // Hide the button initially
+
+    // Show the button after 5 seconds
+    setTimeout(() => {
+        nextPageBtn.style.display = 'inline-block'; // Make the button visible
+    }, 5000);
+
+    // Add event listener for button click to navigate to food.html
+    nextPageBtn.addEventListener('click', () => {
+        window.location.href = 'food.html'; // Redirect to food.html
+    });
     </script>
 </body>
 </html>
