@@ -5,76 +5,166 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Game Dates</title>
     <style>
+        :root {
+            --blood-red: #ff3333;
+            --deep-black: #121212;
+            --dark-gray: #222;
+        }
+        
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #000;
-            color: #fff;
-            text-align: center;
+            background-color: var(--deep-black);
+            color: white;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(255,50,50,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255,50,50,0.1) 0%, transparent 50%);
         }
         
-        .container {
-            max-width: 95%;
-            padding: 20px;
-            background: rgba(30, 30, 30, 0.8);
+        .game-container {
+            width: 90%;
+            max-width: 400px;
+            background: var(--dark-gray);
+            border: 1px solid var(--blood-red);
             border-radius: 15px;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+            padding: 25px;
+            box-shadow: 0 0 25px rgba(255, 50, 50, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .game-container::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 45%,
+                rgba(255, 50, 50, 0.05) 50%,
+                transparent 55%
+            );
+            animation: scanlines 4s linear infinite;
+            pointer-events: none;
         }
         
         h1 {
-            color: #ff3333;
-            font-weight: 700;
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(255, 50, 50, 0.5);
+            color: var(--blood-red);
+            font-size: 2rem;
+            margin: 0 0 10px 0;
+            text-shadow: 0 0 8px rgba(255, 50, 50, 0.6);
+            position: relative;
         }
         
-        .date {
-            color: #ccc;
-            font-size: 1.1rem;
+        .game-date {
+            color: #aaa;
+            font-size: 0.9rem;
             margin-bottom: 20px;
+            display: block;
         }
         
-        .game-image {
+        .screenshot-container {
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .game-screenshot {
             width: 100%;
-            max-width: 300px;
-            border-radius: 10px;
-            border: 2px solid #ff3333;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+            border-radius: 8px;
+            border: 2px solid var(--blood-red);
+            box-shadow: 0 0 15px rgba(255, 50, 50, 0.3);
             transition: transform 0.3s;
+            display: block;
         }
         
-        .game-image:hover {
+        .game-screenshot:hover {
             transform: scale(1.02);
         }
         
-        .pixel-heart {
-            color: #ff3333;
-            font-size: 1.5rem;
-            margin-top: 20px;
-            animation: pulse 1.5s infinite;
+        .health-bar {
+            height: 4px;
+            background: #333;
+            margin: 15px 0;
+            border-radius: 2px;
+            overflow: hidden;
         }
         
-        @keyframes pulse {
-            0% { opacity: 0.7; }
+        .health-fill {
+            height: 100%;
+            width: 85%;
+            background: var(--blood-red);
+            box-shadow: 0 0 5px var(--blood-red);
+            animation: pulse-health 2s infinite;
+        }
+        
+        .achievement {
+            background: rgba(30, 30, 30, 0.7);
+            border-left: 3px solid var(--blood-red);
+            padding: 8px 12px;
+            margin: 10px 0;
+            font-size: 0.8rem;
+            text-align: left;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        @keyframes scanlines {
+            from { transform: rotate(0deg) translateY(0); }
+            to { transform: rotate(0deg) translateY(100px); }
+        }
+        
+        @keyframes pulse-health {
+            0% { opacity: 0.8; }
             50% { opacity: 1; }
-            100% { opacity: 0.7; }
+            100% { opacity: 0.8; }
+        }
+        
+        .controller-icon {
+            color: var(--blood-red);
+            font-size: 1.5rem;
+            margin-top: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Our Game Dates</h1>
-        <p class="date">April 16 2025</p>
-        <img src="gamexd.png" alt="Our Game Moment" class="game-image">
-        <div class="pixel-heart">♥</div>
+    <div class="game-container">
+        <h1>OUR GAME DATES</h1>
+        <span class="game-date">APRIL 16 2025</span>
+        
+        <div class="health-bar">
+            <div class="health-fill"></div>
+        </div>
+        
+        <div class="screenshot-container">
+            <img src="gamexd.png" alt="Game Screenshot" class="game-screenshot">
+        </div>
+        
+        <div class="achievement">
+            <i class="fas fa-trophy"></i> Achievement Unlocked: Perfect Gaming Night
+        </div>
+        
+        <div class="achievement">
+            <i class="fas fa-heart"></i> Memory Created: First Co-op Victory
+        </div>
+        
+        <div class="controller-icon">
+            <i class="fas fa-gamepad"></i>
+        </div>
     </div>
 </body>
 </html>
