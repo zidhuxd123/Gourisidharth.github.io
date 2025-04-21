@@ -132,3 +132,13 @@ button:hover {
     font-size: 16px;
   }
 }
+/* For even MORE roundness */
+button {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 900;
+}
+
+/* Glow effect for yes button */
+.yesButton {
+  box-shadow: 0 0 15px rgba(255, 51, 102, 0.5);
+}
