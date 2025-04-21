@@ -54,7 +54,7 @@ body {
   border-radius: 10px;
 }
 
-/* Buttons - UPDATED FONT STYLES */
+/* Buttons - UPDATED TO ROUND BOLD FONT */
 .buttons {
   display: flex;
   gap: 15px;
@@ -70,24 +70,28 @@ button {
   cursor: pointer;
   font-weight: bold;
   transition: all 0.3s;
-  font-family: 'Fattern', Serif; /* New font */
-  letter-spacing: 1px; /* Improves readability */
+  font-family: 'Nunito', 'Varela Round', 'Quicksand', sans-serif; /* Round bold options */
+  letter-spacing: 0.5px;
+  text-transform: uppercase; /* Makes text more impactful */
 }
 
 .yesButton {
   background: #ff3366;
   color: white;
-  font-size: 18px; /* Slightly larger for emphasis */
+  font-size: 17px;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.2); /* Adds depth */
 }
 
 .noButton {
   background: #f0f0f0;
   color: #ff3366;
+  font-weight: 800; /* Extra bold */
 }
 
 /* Hover effects */
 button:hover {
   transform: scale(1.05);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
 }
 
 .yesButton:hover {
@@ -97,7 +101,6 @@ button:hover {
 .noButton:hover {
   background: #e0e0e0;
 }
-
 /* Responsive adjustments */
 @media (max-width: 480px) {
   .card {
