@@ -19,20 +19,26 @@
     }
     .container {
       background: rgba(255, 255, 255, 0.85);
-      padding: 20px; /* Reduced padding */
+      padding: 20px;
       border-radius: 15px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      max-width: 350px; /* Reduced max-width */
-      width: 85%; /* Adjusted width percentage */
+      max-width: 350px;
+      width: 85%;
     }
     h1 {
       font-family: 'Poppins', sans-serif;
       font-weight: 700;
       color: #A0522D;
       font-size: 2em;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       text-transform: uppercase;
       letter-spacing: 1px;
+    }
+    .gif {
+      width: 150px;
+      margin: 10px auto;
+      display: block;
+      border-radius: 5px;
     }
     .milestone {
       font-size: 1.1em;
@@ -75,10 +81,11 @@
 <body>
   <div class="container">
     <h1>Our Silly Fight Archives</h1>
+    <img src="funnyx.gif" alt="Funny GIF" class="gif" onerror="this.style.display='none';">
     <div class="milestone">First Fight: April 10, 2025</div>
     <div class="milestone">Second Fight: April 15, 2025</div>
     <div class="milestone">Anniversary Date: April 20, 2025</div>
-    <div class="note">More Updating Soon :)</div>
+    <div class="note">More Updating Soon... :)</div>
     <div class="button">
       <button onclick="window.location.href='date.html'">Click here if we can fix everything!</button>
     </div>
