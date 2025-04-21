@@ -8,7 +8,7 @@
     body {
       margin: 0;
       padding: 0;
-      background: #ffeb3b; /* Light yellow background for a warm feel */
+      background: #ffeb3b; /* Yellow background to match your output */
       overflow: hidden;
       display: flex;
       justify-content: center;
@@ -24,7 +24,7 @@
     h1 {
       font-family: 'Arial', sans-serif;
       font-size: 48px;
-      color: #e91e63; /* Pinkish-red for a romantic touch */
+      color: #e91e63; /* Pinkish-red to match your output */
       margin-bottom: 20px;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     }
@@ -50,9 +50,9 @@
     /* Floating hearts */
     .heart {
       position: absolute;
-      width: 30px;
-      height: 30px;
-      background: url('https://www.w3schools.com/howto/img_5terre.jpg') no-repeat center; /* Placeholder, replace with heart image */
+      width: 40px; /* Slightly larger for visibility */
+      height: 40px;
+      background: url('https://img.icons8.com/color/48/000000/heart.png') no-repeat center; /* Free heart icon from Icons8 */
       background-size: cover;
       animation: float 6s ease-in-out infinite;
     }
@@ -70,16 +70,16 @@
         opacity: 0.7;
       }
     }
-    /* Generate multiple hearts */
-    .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
-    .heart:nth-child(2) { left: 20%; animation-delay: 1s; }
-    .heart:nth-child(3) { left: 30%; animation-delay: 2s; }
-    .heart:nth-child(4) { left: 40%; animation-delay: 0.5s; }
-    .heart:nth-child(5) { left: 50%; animation-delay: 1.5s; }
-    .heart:nth-child(6) { left: 60%; animation-delay: 0.8s; }
-    .heart:nth-child(7) { left: 70%; animation-delay: 2.5s; }
-    .heart:nth-child(8) { left: 80%; animation-delay: 1.2s; }
-    .heart:nth-child(9) { left: 90%; animation-delay: 0.3s; }
+    /* Generate multiple hearts with varied positions */
+    .heart:nth-child(1) { left: 10%; top: 10%; animation-delay: 0s; }
+    .heart:nth-child(2) { left: 20%; top: 20%; animation-delay: 1s; }
+    .heart:nth-child(3) { left: 30%; top: 30%; animation-delay: 2s; }
+    .heart:nth-child(4) { left: 40%; top: 40%; animation-delay: 0.5s; }
+    .heart:nth-child(5) { left: 50%; top: 50%; animation-delay: 1.5s; }
+    .heart:nth-child(6) { left: 60%; top: 20%; animation-delay: 0.8s; }
+    .heart:nth-child(7) { left: 70%; top: 30%; animation-delay: 2.5s; }
+    .heart:nth-child(8) { left: 80%; top: 40%; animation-delay: 1.2s; }
+    .heart:nth-child(9) { left: 90%; top: 10%; animation-delay: 0.3s; }
     /* Safe area support */
     @supports (-webkit-overflow-scrolling: touch) {
       body {
@@ -111,11 +111,12 @@
   <div class="heart"></div>
 
   <script>
-    // Optional: Randomize heart positions and animations
+    // Randomize heart positions and animations
     document.addEventListener('DOMContentLoaded', function() {
       const hearts = document.querySelectorAll('.heart');
       hearts.forEach(heart => {
         heart.style.left = Math.random() * 90 + '%';
+        heart.style.top = Math.random() * 90 + '%';
         heart.style.animationDelay = Math.random() * 3 + 's';
       });
     });
