@@ -10,7 +10,7 @@
       margin: 0;
       padding: 0;
       font-family: 'Lora', serif;
-      background: linear-gradient(135deg, #e6dada, #b3a7a7);
+      background: linear-gradient(135deg, #8B4513, #A0522D);
       min-height: 100vh;
       display: flex;
       justify-content: center;
@@ -19,16 +19,16 @@
     }
     .container {
       background: rgba(255, 255, 255, 0.85);
-      padding: 30px;
+      padding: 20px; /* Reduced padding */
       border-radius: 15px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      max-width: 400px;
-      width: 90%;
+      max-width: 350px; /* Reduced max-width */
+      width: 85%; /* Adjusted width percentage */
     }
     h1 {
       font-family: 'Poppins', sans-serif;
       font-weight: 700;
-      color: #b3a7a7;
+      color: #A0522D;
       font-size: 2em;
       margin-bottom: 20px;
       text-transform: uppercase;
@@ -45,6 +45,12 @@
     }
     .milestone:hover {
       background: rgba(230, 218, 218, 0.8);
+    }
+    .note {
+      font-size: 0.9em;
+      color: #7a5e4d;
+      font-style: italic;
+      margin-top: 5px;
     }
     .button {
       margin-top: 20px;
@@ -68,12 +74,13 @@
 </head>
 <body>
   <div class="container">
-    <h1>Our Milestones</h1>
+    <h1>Our Silly Fight Archives</h1>
     <div class="milestone">First Fight: April 10, 2025</div>
     <div class="milestone">Second Fight: April 15, 2025</div>
     <div class="milestone">Anniversary Date: April 20, 2025</div>
+    <div class="note">More Updating Soon :)</div>
     <div class="button">
-      <button onclick="window.location.href='date.html'">We Fixed everything!</button>
+      <button onclick="window.location.href='date.html'">Click here if we can fix everything!</button>
     </div>
   </div>
 </body>
