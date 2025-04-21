@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You!</title>
+    <meta http-equiv="refresh" content="7;url=https://www.instagram.com/zidhuxd/">
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: white;
+            background-image: 
+                linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .tweet-container {
+            background-color: black;
+            color: white;
+            border-radius: 16px;
+            padding: 16px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tweet-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .tweet-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            margin-right: 12px;
+            object-fit: cover;
+            background-color: #333;
+        }
+        
+        .tweet-user {
+            flex-grow: 1;
+        }
+        
+        .tweet-author {
+            font-weight: bold;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tweet-username {
+            color: #71767B;
+            font-size: 15px;
+            margin-left: 4px;
+        }
+        
+        .tweet-text {
+            font-size: 15px;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+        
+        .tweet-actions {
+            display: flex;
+            justify-content: space-between;
+            color: #71767B;
+            font-size: 13px;
+            padding-top: 12px;
+            border-top: 1px solid #2F3336;
+            max-width: 80%;
+        }
+        
+        .countdown-btn {
+            background-color: #1D9BF0;
+            color: white;
+            border: none;
+            border-radius: 9999px;
+            padding: 8px 16px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 16px;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+        
+        .countdown-btn:hover {
+            background-color: #1A8CD8;
+        }
+        
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 14px;
+            animation: fall linear forwards;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+        
+        .verified-badge {
+            color: #1D9BF0;
+            font-size: 14px;
+            margin-left: 2px;
+        }
+        
+        /* Hide audio controls */
+        #bgMusic {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Audio element (make sure lastbg.mp3 is in the same directory) -->
+    <audio id="bgMusic">
+        <source src="lastbg.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="tweet-container">
+        <div class="tweet-header">
+            <img src="imgxd.jpg" class="tweet-avatar" alt="Profile picture">
+            <div class="tweet-user">
+                <div class="tweet-author">
+                    zidhuxd <span class="verified-badge">✓</span>
+                    <span class="tweet-username">@zidhuxd</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tweet-text">
+            Thank you for being awesome! ❤️<br><br>
+            You'll be redirected to my Instagram in <span id="countdown">7</span> seconds...
+        </div>
+        
+        <div class="tweet-actions">
+            <span>❤️ 42</span>
+            <span>🔁 7</span>
+            <span>🔖</span>
+        </div>
+        
+        <button class="countdown-btn" id="countdown-btn">Continue in 7s...</button>
+    </div>
+
+    <script>
+        // Audio control - plays once and stops
+        document.addEventListener('DOMContentLoaded', function() {
+            const bgMusic = document.getElementById('bgMusic');
+            bgMusic.volume = 0.2; // Set volume to 20% (low volume)
+            
+            // Remove the loop attribute if it exists
+            bgMusic.removeAttribute('loop');
+            
+            // Try to autoplay
+            bgMusic.play().catch(e => console.log("Autoplay prevented:", e));
+            
+            // The audio will automatically stop when finished
+        });
+
+        // Countdown functionality
+        let seconds = 7;
+        const countdownElement = document.getElementById('countdown');
+        const countdownBtn = document.getElementById('countdown-btn');
+        
+        const updateCountdown = () => {
+            countdownElement.textContent = seconds;
+            countdownBtn.textContent = `Continue in ${seconds}s...`;
+            
+            if (seconds <= 0) {
+                window.location.href = "https://www.instagram.com/zidhuxd/";
+            } else {
+                seconds--;
+                setTimeout(updateCountdown, 1000);
+            }
+        };
+        
+        updateCountdown();
+        
+        // Create falling hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = -20 + 'px';
+            heart.style.animationDuration = Math.random() * 2 + 1 + 's';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        }
+        
+        setInterval(createHeart, 200);
+        
+        // Skip button functionality
+        countdownBtn.addEventListener('click', () => {
+            window.location.href = "https://www.instagram.com/zidhuxd/";
+        });
+    </script>
+</body>
+</html>
