@@ -54,7 +54,7 @@ body {
   border-radius: 10px;
 }
 
-/* Buttons */
+/* Buttons - UPDATED FONT STYLES */
 .buttons {
   display: flex;
   gap: 15px;
@@ -70,16 +70,32 @@ button {
   cursor: pointer;
   font-weight: bold;
   transition: all 0.3s;
+  font-family: 'Dancing Script', cursive; /* New font */
+  letter-spacing: 1px; /* Improves readability */
 }
 
 .yesButton {
   background: #ff3366;
   color: white;
+  font-size: 18px; /* Slightly larger for emphasis */
 }
 
 .noButton {
   background: #f0f0f0;
   color: #ff3366;
+}
+
+/* Hover effects */
+button:hover {
+  transform: scale(1.05);
+}
+
+.yesButton:hover {
+  background: #e6005c;
+}
+
+.noButton:hover {
+  background: #e0e0e0;
 }
 
 /* Responsive adjustments */
@@ -95,5 +111,9 @@ button {
   }
   button {
     padding: 10px 20px;
+    font-size: 15px; /* Adjusted for mobile */
+  }
+  .yesButton {
+    font-size: 16px;
   }
 }
