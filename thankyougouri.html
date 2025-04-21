@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Thank You</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #4a0000; /* Darker aesthetic red background */
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding-top: env(safe-area-inset-top, 0);
+      font-family: 'Arial', sans-serif;
+    }
+    .container {
+      position: relative;
+      text-align: center;
+      z-index: 1;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1); /* Slight white overlay for contrast */
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    }
+    h1 {
+      font-size: 60px; /* Larger text for clarity */
+      background: linear-gradient(45deg, #ff4d4d, #ff8c8c); /* Gradient for aesthetic */
+      -webkit-background-clip: text; /* Safari support */
+      background-clip: text;
+      color: transparent; /* Allow gradient to show */
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 10px rgba(255, 77, 77, 0.7); /* Enhanced shadow */
+      font-weight: bold;
+      animation: glow 2s ease-in-out infinite alternate; /* Subtle glowing effect */
+    }
+    @keyframes glow {
+      from {
+        text-shadow: 2px 2px 10px rgba(255, 77, 77, 0.7);
+      }
+      to {
+        text-shadow: 2px 2px 20px rgba(255, 77, 77, 1);
+      }
+    }
+    .gif {
+      width: 200px; /* Adjust size as needed */
+      margin: 20px auto;
+      display: block;
+      border-radius: 10px;
+    }
+    button {
+      padding: 15px 40px;
+      font-size: 20px;
+      background: #ff4d4d; /* Brighter red for button */
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-transform: uppercase; /* Clearer text style */
+    }
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+    button:active {
+      transform: scale(0.95);
+    }
+    /* Text-based floating hearts */
+    .heart {
+      position: absolute;
+      font-size: 24px; /* Size of the heart character */
+      color: #ff4d4d; /* Match the red theme */
+      opacity: 0.8;
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.7;
+      }
+      50% {
+        transform: translateY(-100px) rotate(180deg);
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(0) rotate(360deg);
+        opacity: 0.7;
+      }
+    }
+    /* Generate multiple hearts with varied positions */
+    .heart:nth-child(1) { left: 10%; top: 10%; animation-delay: 0s; }
+    .heart:nth-child(2) { left: 20%; top: 20%; animation-delay: 1s; }
+    .heart:nth-child(3) { left: 30%; top: 30%; animation-delay: 2s; }
+    .heart:nth-child(4) { left: 40%; top: 40%; animation-delay: 0.5s; }
+    .heart:nth-child(5) { left: 50%; top: 50%; animation-delay: 1.5s; }
+    .heart:nth-child(6) { left: 60%; top: 20%; animation-delay: 0.8s; }
+    .heart:nth-child(7) { left: 70%; top: 30%; animation-delay: 2.5s; }
+    .heart:nth-child(8) { left: 80%; top: 40%; animation-delay: 1.2s; }
+    .heart:nth-child(9) { left: 90%; top: 10%; animation-delay: 0.3s; }
+    /* Safe area support */
+    @supports (-webkit-overflow-scrolling: touch) {
+      body {
+        padding-top: constant(safe-area-inset-top, 0);
+      }
+    }
+    @supports (padding: max(0px)) {
+      body {
+        padding-top: env(safe-area-inset-top, 0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Thank You!</h1>
+    <img src="thankyougouri.gif" alt="Thank You Gouri" class="gif">
+    <button onclick="location.href='yummy.html'">Click here</button>
+  </div>
+
+  <!-- Text-based floating hearts -->
+  <div class="heart">♥</div>
+  <div class="heart">♥</div>
+  <div class="heart">♥</div>
+  <div class="heart">♥</div>
+  <div class="heart">♥</div>
+  <div class="heart">♥</div>
+  <div class="heart">♥</div>
+  <div class="heart">♥</div>
+  <div class="heart">♥</div>
+
+  <script>
+    // Randomize heart positions and animations
+    document.addEventListener('DOMContentLoaded', function() {
+      const hearts = document.querySelectorAll('.heart');
+      hearts.forEach(heart => {
+        heart.style.left = Math.random() * 90 + '%';
+        heart.style.top = Math.random() * 90 + '%';
+        heart.style.animationDelay = Math.random() * 3 + 's';
+      });
+    });
+  </script>
+</body>
+</html>
