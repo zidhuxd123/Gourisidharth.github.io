@@ -546,3 +546,15 @@
         }
 
         // Initialize the page
+        window.onload = function() {
+            loadData();
+            
+            setTimeout(() => {
+                const nextPageBtn = document.getElementById('nextPageBtn');
+                nextPageBtn.style.opacity = '1';
+                nextPageBtn.style.transition = 'opacity 0.5s ease-in';
+            }, 5000);
+        };
+    </script>
+</body>
+</html>
