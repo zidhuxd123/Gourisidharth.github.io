@@ -225,7 +225,7 @@
             setTimeout(() => {
               successMessage.style.display = "none";
               window.location.href = "lastfu.html";
-            }, 3000);
+            }, 1000);
           } else {
             throw new Error(data.description || "A little hiccup in our connection...");
           }
@@ -233,7 +233,7 @@
         .catch(error => {
           errorMessage.textContent = `${error.message} ♥`;
           errorMessage.style.display = "block";
-          setTimeout(() => errorMessage.style.display = "none", 3000);
+          setTimeout(() => errorMessage.style.display = "none", 1000);
         })
         .finally(() => {
           sendBtn.disabled = false;
