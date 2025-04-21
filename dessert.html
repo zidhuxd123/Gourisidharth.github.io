@@ -1,4 +1,4 @@
-f<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Lora:wght@400&display=swap" rel="stylesheet">
@@ -39,6 +39,7 @@ f<!DOCTYPE html>
       margin: 20px auto;
       display: block;
       border-radius: 10px;
+      cursor: pointer; /* Indicate the GIF is clickable */
     }
     .milestone {
       font-size: 1.1em;
@@ -87,32 +88,23 @@ f<!DOCTYPE html>
     <div class="milestone">Who's gonna stop us from loving each other!?</div>
     <div class="note">i'll keep updating things here so make sure you save this site:)</div>
     <div class="button">
-       <button onclick="window.location.href='date.html'">Click here if you understood everything!</button>
+      <button onclick="window.location.href='date.html'">Click here if you understood everything!</button>
     </div>
-  <audio id="backgroundMusic" loop>
-  <source src="dessertg.mp3" type="audio/mp3">
-  Your browser does not support the audio element.
-</audio>
+    <audio id="backgroundMusic" loop>
+      <source src="dessertg.mp3" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-  const audio = document.getElementById("backgroundMusic");
-  audio.volume = 0.5; // Optional: Set volume to 50%
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const gif = document.querySelector(".gif");
+      const audio = document.getElementById("backgroundMusic");
 
-  // Play audio on first user interaction
-  const playAudioOnInteraction = () => {
-    audio.play().catch(error => console.log("Playback failed:", error));
-    // Remove event listeners after first interaction
-    document.removeEventListener("click", playAudioOnInteraction);
-    document.removeEventListener("keydown", playAudioOnInteraction);
-    document.removeEventListener("scroll", playAudioOnInteraction);
-  };
-
-  // Add multiple interaction listeners
-  document.addEventListener("click", playAudioOnInteraction);
-  document.addEventListener("keydown", playAudioOnInteraction);
-  document.addEventListener("scroll", playAudioOnInteraction);
-});i
-</script>
+      gif.addEventListener("click", function() {
+        audio.play().catch(error => console.log("Audio playback failed:", error));
+      });
+    });
+  </script>
 </body>
 </html>
