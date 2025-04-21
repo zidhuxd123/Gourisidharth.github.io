@@ -70,7 +70,7 @@ button {
   cursor: pointer;
   font-weight: bold;
   transition: all 0.3s;
-  font-family: 'Dancing Script', cursive; /* New font */
+  font-family: 'Fattern', Serif; /* New font */
   letter-spacing: 1px; /* Improves readability */
 }
 
