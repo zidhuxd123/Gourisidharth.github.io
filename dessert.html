@@ -89,10 +89,16 @@ f<!DOCTYPE html>
     <div class="button">
        <button onclick="window.location.href='date.html'">Click here if you understood everything!</button>
     </div>
-  </div>
-  <audio autoplay loop>
+  <audio id="backgroundMusic" loop>
   <source src="dessertg.mp3" type="audio/mp3">
   Your browser does not support the audio element.
-  </audio>
+</audio>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    let audio = document.getElementById("backgroundMusic");
+    audio.play().catch(error => console.log("Autoplay prevented:", error));
+  });
+</script>
 </body>
 </html>
