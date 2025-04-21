@@ -82,6 +82,26 @@
     button:hover {
       background: #7a5e4d;
     }
+    /* Style for audio control button */
+    .audio-control {
+      text-align: center;
+      margin: 10px 0;
+    }
+    .audio-control button {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      background: #C70039;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9em;
+      transition: background 0.3s ease;
+    }
+    .audio-control button:hover {
+      background: #a50030;
+    }
     @supports (-webkit-overflow-scrolling: touch) {
       body {
         padding-top: constant(safe-area-inset-top);
@@ -106,27 +126,64 @@
   <div class="container">
     <h1>Fights?</h1>
     <img src="funnycat.gif" alt="Funny GIF" class="gif" onerror="this.style.display='none';">
-    <div class="note">Click on the gif for music:)</div>
+    <!-- Audio control button (visible initially) -->
+    <div class="audio-control" id="audioControl">
+      <button onclick="playAudio()">Play Background Music</button>
+    </div>
     <div class="milestone">We argue, it's true. Sometimes it hurts, deeply too. But leaving each other? Never an option for us.</div>
     <div class="milestone">No matter what happens at the end of the day, we both go to sleep kissing each other♥️</div>
     <div class="milestone">Who's gonna stop us from loving each other!?</div>
-      <div class="button">
+    <div class="button">
       <button onclick="window.location.href='datexd.html'">Click here if you understood everything!</button>
     </div>
-    <audio id="backgroundMusic" loop>
-      <source src="dessertg.mp3" type="audio/mp3">
-      Your browser does not support the audio element.
-    </audio>
   </div>
+
+  <!-- Audio element for background music -->
+  <audio id="backgroundMusic" loop>
+    <source src="dessertg.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      const gif = document.querySelector(".gif");
       const audio = document.getElementById("backgroundMusic");
+      const audioControl = document.getElementById("audioControl");
 
-      gif.addEventListener("click", function() {
-        audio.play().catch(error => console.log("Audio playback failed:", error));
-      });
+      // Set low volume (0.2 = 20% volume)
+      audio.volume = 0.2;
+
+      // Attempt to play audio on page load
+      function tryPlayAudio() {
+        console.log('Attempting to play audio...');
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              console.log('Audio playing successfully');
+              audioControl.style.display = 'none'; // Hide button if playing
+            })
+            .catch(error => {
+              console.log('Autoplay failed:', error);
+              audioControl.style.display = 'block'; // Show button on failure
+            });
+        }
+      }
+
+      // Function to play audio when user clicks the button
+      function playAudio() {
+        console.log('Play button clicked');
+        audio.play()
+          .then(() => {
+            console.log('Audio started via button');
+            audioControl.style.display = 'none'; // Hide button once playing
+          })
+          .catch(error => {
+            console.log('Error playing audio:', error);
+          });
+      }
+
+      // Start audio on page load
+      tryPlayAudio();
     });
   </script>
 </body>
