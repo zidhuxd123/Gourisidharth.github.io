@@ -16,7 +16,6 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      /* Ensure body takes full height including safe area */
       height: 100%;
     }
     .container {
@@ -26,7 +25,6 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
       max-width: 350px;
       width: 85%;
-      /* Add padding-top to push content below the notch if needed */
       padding-top: env(safe-area-inset-top);
     }
     h1 {
@@ -61,13 +59,7 @@
       font-size: 1.1em;
       color: #C70039;
       font-weight: bold;
-      margin: 15px auto;
-      padding: 10px;
-      background: rgba(255, 255, 255, 0.7);
-      border-radius: 50px; /* Makes it round */
-      display: inline-block;
-      width: auto;
-      max-width: 80%;
+      margin: 10px 0;
       font-family: 'Poppins', sans-serif;
     }
     .button {
@@ -88,7 +80,6 @@
     button:hover {
       background: #7a5e4d;
     }
-    /* Ensure content respects safe areas */
     @supports (-webkit-overflow-scrolling: touch) {
       body {
         padding-top: constant(safe-area-inset-top);
