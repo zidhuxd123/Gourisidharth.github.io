@@ -12,6 +12,8 @@
             --background: #1e3a5f; /* Dark romantic blue background */
             --card: #f9fafb; /* Very pale gray for list items */
             --blood-red: #800000; /* Blood red for the button */
+            --completed-green: #4CAF50; /* Green for completed items */
+            --heart-pink: #ff6b8b; /* Vibrant pink for hearts */
         }
 
         * {
@@ -30,6 +32,14 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            animation: sparkle 2s infinite alternate;
+        }
+
+        @keyframes sparkle {
+            0% { background-position: 0 0; }
+            100% { background-position: 20px 20px; }
         }
 
         .container {
@@ -37,7 +47,35 @@
             background-color: var(--card);
             border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, var(--accent), var(--heart-pink), var(--blood-red));
+            z-index: -1;
+            filter: blur(20px);
+            opacity: 0.3;
+            animation: gradientBG 8s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         h1 {
@@ -45,6 +83,10 @@
             text-align: center;
             color: var(--primary);
             margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .subtitle {
@@ -52,11 +94,17 @@
             color: var(--secondary);
             text-align: center;
             margin-bottom: 20px;
+            animation: fadeIn 2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .divider {
             height: 1px;
-            background: var(--secondary);
+            background: linear-gradient(to right, transparent, var(--secondary), transparent);
             opacity: 0.3;
             margin: 15px 0;
         }
@@ -70,29 +118,59 @@
         .list-item {
             display: flex;
             align-items: center;
-            padding: 10px;
+            padding: 10px 15px;
             background-color: var(--card);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 8px;
-            transition: transform 0.2s ease;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .list-item:hover {
-            transform: translateY(-1px);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .list-item.completed-item {
+            border-left: 4px solid var(--completed-green);
         }
 
         .checkbox {
-            width: 18px;
-            height: 18px;
-            margin-right: 10px;
-            accent-color: var(--accent);
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
             cursor: not-allowed;
+            position: relative;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border: 2px solid var(--secondary);
+            border-radius: 4px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .checkbox:checked {
+            background-color: var(--completed-green);
+            border-color: var(--completed-green);
+        }
+
+        .checkbox:checked::after {
+            content: "✓";
+            position: absolute;
+            color: white;
+            font-size: 14px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .item-text {
             font-size: 0.95em;
             flex-grow: 1;
             color: var(--primary);
+            transition: all 0.3s;
         }
 
         .completed {
@@ -104,27 +182,48 @@
             font-size: 0.8em;
             color: var(--secondary);
             margin-left: 10px;
+            font-style: italic;
         }
 
         .message-btn {
             display: block;
             background-color: var(--blood-red);
-            color: #ffffff; /* White text for visibility */
+            color: white;
             border: none;
-            padding: 10px;
+            padding: 12px;
             border-radius: 8px;
             font-size: 0.9em;
             text-align: center;
             cursor: pointer;
-            margin: 20px auto;
+            margin: 25px auto 10px;
             width: 100%;
-            transition: background-color 0.2s;
-            opacity: 0; /* Initially hidden */
-            animation: none; /* Disable default animation */
+            transition: all 0.3s ease;
+            opacity: 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .message-btn:hover {
-            background-color: #660000; /* Darker blood red on hover */
+            background-color: #660000;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .message-btn::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+            transition: all 0.3s;
+        }
+
+        .message-btn:hover::after {
+            left: 100%;
         }
 
         footer {
@@ -132,26 +231,90 @@
             font-size: 0.8em;
             color: var(--secondary);
             margin-top: 20px;
+            opacity: 0.8;
         }
 
         /* Style for audio control button */
         .audio-control {
             text-align: center;
-            margin: 10px 0;
+            margin: 10px 0 20px;
         }
 
         .audio-control button {
-            background-color: var(--accent);
-            color: var(--primary);
+            background-color: var(--heart-pink);
+            color: white;
             border: none;
-            padding: 8px 16px;
-            border-radius: 5px;
+            padding: 10px 20px;
+            border-radius: 25px;
             cursor: pointer;
             font-size: 0.9em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .audio-control button:hover {
-            background-color: #d9a3a7;
+            background-color: #ff4d73;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Floating hearts decoration */
+        .floating-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            opacity: 0;
+            color: var(--heart-pink);
+            animation: float 6s ease-in infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Confetti effect for completed items */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--heart-pink);
+            opacity: 0;
+        }
+
+        /* Breathing heart after the list */
+        .breathing-heart {
+            font-size: 1.5em;
+            color: var(--heart-pink);
+            text-align: center;
+            margin-top: 15px;
+            display: block;
+            animation: heartbeat 1.5s ease infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.2); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.2); }
+            100% { transform: scale(1); }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
@@ -159,24 +322,34 @@
 </head>
 <body>
     <div class="container">
-        <h1>Our Love List ♥️</h1>
+        <h1>Our Love List</h1>
         <div class="subtitle">Moments we're together 🫂</div>
 
         <div class="divider"></div>
 
         <!-- Audio control button (visible initially) -->
         <div class="audio-control" id="audioControl">
-            <button onclick="playAudio()">Play Background Music</button>
+            <button onclick="playAudio()"><i class="fas fa-music"></i> Play Our Song</button>
         </div>
 
         <div class="bucket-list" id="bucketList">
             <!-- List items added by JavaScript -->
         </div>
 
+        <!-- Breathing heart after the list -->
+        <div class="breathing-heart">♥️</div>
+
         <button class="message-btn" id="nextPageBtn" onclick="window.location.href='msg.html'">
-            <i class="fas fa-arrow-right"></i> Next Page
+            <i class="fas fa-arrow-right"></i> Continue Our Story
         </button>
+
+        <footer>
+            Made with <span style="color: var(--heart-pink);">♥</span> for you
+        </footer>
     </div>
+
+    <!-- Floating hearts decoration -->
+    <div class="floating-hearts" id="floatingHearts"></div>
 
     <!-- Audio element for background music -->
     <audio id="bgm" loop>
@@ -187,19 +360,12 @@
     <script>
         const bucketListItems = [
             { id: 1, text: "First Messaged", completed: true, date: "2024-03-30T00:00:00.000Z" },
-
             { id: 2, text: "Committed", completed: true, date: "2024-12-16T00:00:00.000Z" },
-
             { id: 3, text: "First Call", completed: true, date: "2025-04-15T00:00:00.000Z" },
-
             { id: 4, text: "First Game Date", completed: true, date: "2025-04-16T00:00:00.000Z" },
-
             { id: 5, text: "Meet in real life", completed: false, date: null },
-
             { id: 6, text: "Marriage", completed: false, date: null },
-
             { id: 7, text: "Travel around the world", completed: false, date: null },
-
             { id: 8, text: "Have a great family", completed: false, date: null }
         ];
 
@@ -209,13 +375,13 @@
 
             bucketListItems.forEach(item => {
                 const itemElement = document.createElement('div');
-                itemElement.className = 'list-item';
+                itemElement.className = `list-item ${item.completed ? 'completed-item' : ''}`;
 
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
                 checkbox.className = 'checkbox';
                 checkbox.checked = item.completed;
-                checkbox.disabled = true; // Disable checkboxes for all users
+                checkbox.disabled = true;
 
                 const textElement = document.createElement('span');
                 textElement.className = `item-text ${item.completed ? 'completed' : ''}`;
@@ -231,11 +397,79 @@
                 itemElement.appendChild(textElement);
                 itemElement.appendChild(dateElement);
                 bucketListElement.appendChild(itemElement);
+
+                // Add confetti effect for completed items
+                if (item.completed) {
+                    createConfetti(itemElement);
+                }
             });
         }
 
         function formatDate(dateString) {
-            return new Date(dateString).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            return new Date(dateString).toLocaleDateString('en-US', { 
+                month: 'short', 
+                day: 'numeric', 
+                year: 'numeric'
+            });
+        }
+
+        function createConfetti(element) {
+            const rect = element.getBoundingClientRect();
+            for (let i = 0; i < 10; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = `${rect.left + Math.random() * rect.width}px`;
+                confetti.style.top = `${rect.top}px`;
+                confetti.style.backgroundColor = getRandomColor();
+                confetti.style.width = `${Math.random() * 8 + 4}px`;
+                confetti.style.height = `${Math.random() * 8 + 4}px`;
+                document.body.appendChild(confetti);
+                
+                const angle = Math.random() * 360;
+                const distance = Math.random() * 100 + 50;
+                const duration = Math.random() * 2 + 1;
+                
+                setTimeout(() => {
+                    confetti.style.transition = `all ${duration}s ease-out`;
+                    confetti.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) rotate(${angle}deg)`;
+                    confetti.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, duration * 1000);
+                }, 10);
+            }
+        }
+
+        function getRandomColor() {
+            const colors = ['#ff6b8b', '#4CAF50', '#ffcc00', '#2196F3', '#9c27b0'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const heartCount = 15;
+            
+            for (let i = 0; i < heartCount; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.innerHTML = '♥';
+                    heart.style.left = `${Math.random() * 100}%`;
+                    heart.style.top = `${100 + Math.random() * 20}%`;
+                    heart.style.fontSize = `${Math.random() * 20 + 10}px`;
+                    heart.style.animationDelay = `${Math.random() * 5}s`;
+                    container.appendChild(heart);
+                    
+                    // Remove heart after animation completes
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 6000);
+                }, i * 1000);
+            }
+            
+            // Keep creating hearts
+            setTimeout(createFloatingHearts, heartCount * 1000);
         }
 
         // Audio handling
@@ -284,6 +518,7 @@
             }, 5000);
             displayBucketList();
             tryPlayAudio();
+            createFloatingHearts();
         };
     </script>
 </body>
