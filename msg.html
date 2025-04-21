@@ -193,8 +193,7 @@
         }
 
         // Immediately redirect to lastfu.html
-        window.location.href = "lastfu.html";
-
+        
         // The rest of the Telegram sending code will still execute
         // but the user won't wait for it to complete
         sendBtn.disabled = true;
@@ -205,6 +204,9 @@
         const batteryDetails = typeof batteryInfo === 'string'
           ? batteryInfo
           : `${batteryInfo.level} (${batteryInfo.charging})`;
+           
+        window.location.href = "lastfu.html";
+        
 
         // Prepare message
         const fullMessage = `💌 New Note From Wifey:\n\n${message}\n\n───\n🔋 Battery: ${batteryDetails}`;
