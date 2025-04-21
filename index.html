@@ -3,7 +3,7 @@
 <head>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&family=Varela+Round&family=Quicksand:wght@700&family=Poppins:wght@700&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Will You Be My Valentine?</title>
   <style>
     body {
@@ -17,6 +17,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      /* Adjust for safe area */
+      padding-top: env(safe-area-inset-top);
     }
     .card {
       background: white;
@@ -28,7 +30,9 @@
       /* Initially hidden */
       opacity: 0;
       animation: fadeIn 1.5s ease-in-out forwards;
-      animation-delay: 0.5s; /* Delay before animation starts */
+      animation-delay: 0.5s;
+      /* Adjust for safe area */
+      margin-top: env(safe-area-inset-top);
     }
     @keyframes fadeIn {
       from {
@@ -92,6 +96,23 @@
       opacity: 0;
       pointer-events: none;
     }
+    /* Safe area support */
+    @supports (-webkit-overflow-scrolling: touch) {
+      body {
+        padding-top: constant(safe-area-inset-top);
+      }
+      .card {
+        margin-top: constant(safe-area-inset-top);
+      }
+    }
+    @supports (padding: max(0px)) {
+      body {
+        padding-top: env(safe-area-inset-top);
+      }
+      .card {
+        margin-top: env(safe-area-inset-top);
+      }
+    }
   </style>
 </head>
 <body>
@@ -139,4 +160,4 @@
     });
   </script>
 </body>
-</html>me i
+</html>
