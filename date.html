@@ -1,22 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Game Dates</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
+            background-color: #000;
+            color: #fff;
             text-align: center;
+            margin: 0;
             padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
-        img {
-            max-width: 80%;
-            border: 1px solid #ddd; /* So you can see if it loads */
+        
+        .container {
+            max-width: 95%;
+            padding: 20px;
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+        }
+        
+        h1 {
+            color: #ff3333;
+            font-weight: 700;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255, 50, 50, 0.5);
+        }
+        
+        .date {
+            color: #ccc;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .game-image {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            border: 2px solid #ff3333;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+            transition: transform 0.3s;
+        }
+        
+        .game-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .pixel-heart {
+            color: #ff3333;
+            font-size: 1.5rem;
+            margin-top: 20px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Our Game Dates</h1>
-    <img src="gamexd.png" alt="Game Screenshot">
-    <p>April 16 2025</p>
+    <div class="container">
+        <h1>Our Game Dates</h1>
+        <p class="date">April 16 2025</p>
+        <img src="gamexd.png" alt="Our Game Moment" class="game-image">
+        <div class="pixel-heart">♥</div>
+    </div>
 </body>
 </html>
