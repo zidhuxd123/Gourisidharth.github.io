@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Love Bucket List ♥️</title>
+    <title>Our Love List</title>
     <style>
         :root {
             --primary: #4a2c2a; /* Dark brown for main text */
@@ -11,6 +11,7 @@
             --accent: #e8b4b8; /* Soft pink for accents */
             --background: #1e3a5f; /* Dark romantic blue background */
             --card: #f9fafb; /* Very pale gray for list items */
+            --blood-red: #800000; /* Blood red for the button */
         }
 
         * {
@@ -112,8 +113,8 @@
 
         .message-btn {
             display: block;
-            background-color: var(--accent);
-            color: var(--card);
+            background-color: var(--blood-red);
+            color: #ffffff; /* White text for visibility */
             border: none;
             padding: 10px;
             border-radius: 8px;
@@ -123,10 +124,12 @@
             margin: 20px auto;
             width: 100%;
             transition: background-color 0.2s;
+            opacity: 0; /* Initially hidden */
+            animation: none; /* Disable default animation */
         }
 
         .message-btn:hover {
-            background-color: #d9a3a7;
+            background-color: #660000; /* Darker blood red on hover */
         }
 
         .admin-btn {
@@ -286,7 +289,7 @@
     </div>
 
     <div class="container">
-        <h1>Our Love Bucket lists ♥️</h1>
+        <h1>Our Love List</h1>
         <div class="subtitle">Moments we'll cherish</div>
 
         <div class="divider"></div>
@@ -295,8 +298,8 @@
             <!-- List items added by JavaScript -->
         </div>
 
-        <button class="message-btn" onclick="window.location.href='msg.html'">
-            <i class="fas fa-envelope"></i> Sweet Message
+        <button class="message-btn" id="nextPageBtn" onclick="window.location.href='msg.html'">
+            <i class="fas fa-arrow-right"></i> Next Page
         </button>
 
         <button class="admin-btn" onclick="showAdminPanel()">
@@ -489,6 +492,15 @@
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('adminAlert').style.display = 'none';
         }
+
+        // Show the "Next Page" button after 5 seconds
+        window.onload = function() {
+            setTimeout(() => {
+                const nextPageBtn = document.getElementById('nextPageBtn');
+                nextPageBtn.style.opacity = '1';
+                nextPageBtn.style.transition = 'opacity 0.5s ease-in';
+            }, 5000);
+        };
 
         loadSavedData();
         displayBucketList();
