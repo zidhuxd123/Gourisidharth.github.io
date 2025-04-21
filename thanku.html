@@ -8,52 +8,56 @@
     body {
       margin: 0;
       padding: 0;
-      background: #ffeb3b; /* Yellow background to match your output */
+      background: #4a0000; /* Darker aesthetic red background */
       overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
       padding-top: env(safe-area-inset-top, 0);
+      font-family: 'Arial', sans-serif;
     }
     .container {
       position: relative;
       text-align: center;
       z-index: 1;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1); /* Slight white overlay for contrast */
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     }
     h1 {
-      font-family: 'Arial', sans-serif;
-      font-size: 48px;
-      color: #e91e63; /* Pinkish-red to match your output */
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      font-size: 60px; /* Larger text for clarity */
+      color: #ff4d4d; /* Brighter, clearer red */
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+      font-weight: bold;
     }
     button {
-      padding: 15px 30px;
-      font-size: 18px;
-      font-family: 'Arial', sans-serif;
-      background: #e91e63;
+      padding: 15px 40px;
+      font-size: 20px;
+      background: #ff4d4d; /* Brighter red for button */
       color: white;
       border: none;
       border-radius: 25px;
       cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-transform: uppercase; /* Clearer text style */
     }
     button:hover {
       transform: scale(1.1);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     }
     button:active {
       transform: scale(0.95);
     }
-    /* Floating hearts */
+    /* Text-based floating hearts */
     .heart {
       position: absolute;
-      width: 40px; /* Slightly larger for visibility */
-      height: 40px;
-      background: url('https://img.icons8.com/color/48/000000/heart.png') no-repeat center; /* Free heart icon from Icons8 */
-      background-size: cover;
+      font-size: 24px; /* Size of the heart character */
+      color: #ff4d4d; /* Match the red theme */
+      opacity: 0.8;
       animation: float 6s ease-in-out infinite;
     }
     @keyframes float {
@@ -99,16 +103,16 @@
     <button onclick="location.href='yummy.html'">Click here</button>
   </div>
 
-  <!-- Floating hearts -->
-  <div class="heart"></div>
-  <div class="heart"></div>
-  <div class="heart"></div>
-  <div class="heart"></div>
-  <div class="heart"></div>
-  <div class="heart"></div>
-  <div class="heart"></div>
-  <div class="heart"></div>
-  <div class="heart"></div>
+  <!-- Text-based floating hearts -->
+  <div class="heart">♥</div>
+  <div class="heart">♥</div>
+  <div class="heart">♥</div>
+  <div class="heart">♥</div>
+  <div class="heart">♥</div>
+  <div class="heart">♥</div>
+  <div class="heart">♥</div>
+  <div class="heart">♥</div>
+  <div class="heart">♥</div>
 
   <script>
     // Randomize heart positions and animations
