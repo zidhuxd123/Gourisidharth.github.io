@@ -3,168 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Game Dates</title>
+    <title>Our Game Dates ♡</title>
     <style>
         :root {
             --blood-red: #ff3333;
-            --deep-black: #121212;
-            --dark-gray: #222;
+            --deep-black: #000;
         }
         
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--deep-black);
             color: white;
+            text-align: center;
             margin: 0;
-            padding: 0;
+            padding: 20px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-image: 
-                radial-gradient(circle at 25% 25%, rgba(255,50,50,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(255,50,50,0.1) 0%, transparent 50%);
-        }
-        
-        .game-container {
-            width: 90%;
-            max-width: 400px;
-            background: var(--dark-gray);
-            border: 1px solid var(--blood-red);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 0 25px rgba(255, 50, 50, 0.3);
-            position: relative;
             overflow: hidden;
         }
         
-        .game-container::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                transparent 45%,
-                rgba(255, 50, 50, 0.05) 50%,
-                transparent 55%
-            );
-            animation: scanlines 4s linear infinite;
-            pointer-events: none;
+        .container {
+            max-width: 95%;
+            padding: 25px;
+            background: rgba(20, 20, 20, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(255, 50, 50, 0.3);
+            border: 2px solid var(--blood-red);
+            position: relative;
+            z-index: 1;
         }
         
         h1 {
             color: var(--blood-red);
-            font-size: 2rem;
-            margin: 0 0 10px 0;
-            text-shadow: 0 0 8px rgba(255, 50, 50, 0.6);
-            position: relative;
+            font-weight: 700;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255, 50, 50, 0.6);
         }
         
-        .game-date {
+        .date {
             color: #aaa;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             margin-bottom: 20px;
-            display: block;
         }
         
-        .screenshot-container {
-            position: relative;
-            margin: 20px 0;
-        }
-        
-        .game-screenshot {
+        .game-image {
             width: 100%;
-            border-radius: 8px;
+            max-width: 300px;
+            border-radius: 10px;
             border: 2px solid var(--blood-red);
-            box-shadow: 0 0 15px rgba(255, 50, 50, 0.3);
+            box-shadow: 0 0 20px rgba(255, 50, 50, 0.4);
             transition: transform 0.3s;
-            display: block;
         }
         
-        .game-screenshot:hover {
-            transform: scale(1.02);
+        .game-image:hover {
+            transform: scale(1.03);
         }
         
-        .health-bar {
-            height: 4px;
-            background: #333;
-            margin: 15px 0;
-            border-radius: 2px;
-            overflow: hidden;
-        }
-        
-        .health-fill {
-            height: 100%;
-            width: 85%;
+        /* Pixel Hearts */
+        .pixel-heart {
+            position: absolute;
+            width: 16px;
+            height: 16px;
             background: var(--blood-red);
-            box-shadow: 0 0 5px var(--blood-red);
-            animation: pulse-health 2s infinite;
+            transform: rotate(-45deg);
+            opacity: 0;
+            animation: 
+                float-up 4s ease-in forwards,
+                fade-heart 4s ease-in forwards;
+            z-index: -1;
         }
         
-        .achievement {
-            background: rgba(30, 30, 30, 0.7);
-            border-left: 3px solid var(--blood-red);
-            padding: 8px 12px;
-            margin: 10px 0;
-            font-size: 0.8rem;
-            text-align: left;
-            border-radius: 0 5px 5px 0;
+        .pixel-heart::before,
+        .pixel-heart::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: var(--blood-red);
+            border-radius: 50%;
         }
         
-        @keyframes scanlines {
-            from { transform: rotate(0deg) translateY(0); }
-            to { transform: rotate(0deg) translateY(100px); }
+        .pixel-heart::before {
+            top: -8px;
+            left: 0;
         }
         
-        @keyframes pulse-health {
-            0% { opacity: 0.8; }
-            50% { opacity: 1; }
-            100% { opacity: 0.8; }
+        .pixel-heart::after {
+            top: 0;
+            left: 8px;
         }
         
-        .controller-icon {
-            color: var(--blood-red);
-            font-size: 1.5rem;
-            margin-top: 15px;
-            animation: float 3s ease-in-out infinite;
+        @keyframes float-up {
+            to { transform: rotate(-45deg) translateY(-100vh); }
         }
         
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+        @keyframes fade-heart {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        /* Music Toggle */
+        .music-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--blood-red);
+            color: black;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(255, 50, 50, 0.6);
+            z-index: 100;
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="game-container">
-        <h1>OUR GAME DATES</h1>
-        <span class="game-date">APRIL 16 2025</span>
-        
-        <div class="health-bar">
-            <div class="health-fill"></div>
-        </div>
-        
-        <div class="screenshot-container">
-            <img src="gamexd.png" alt="Game Screenshot" class="game-screenshot">
-        </div>
-        
-        <div class="achievement">
-            <i class="fas fa-trophy"></i> Achievement Unlocked: Perfect Gaming Night
-        </div>
-        
-        <div class="achievement">
-            <i class="fas fa-heart"></i> Memory Created: First Co-op Victory
-        </div>
-        
-        <div class="controller-icon">
-            <i class="fas fa-gamepad"></i>
-        </div>
+    <div class="container">
+        <h1>Our Game Dates</h1>
+        <p class="date">April 16 2025</p>
+        <img src="gamexd.png" alt="Our Game Moment" class="game-image">
     </div>
+    
+    <!-- Floating Pixel Hearts (Generated by JS) -->
+    
+    <!-- BGM Player (8-bit style track) -->
+    <audio id="bgm" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-game-show-suspense-waiting-668.mp3" type="audio/mpeg">
+    </audio>
+    
+    <button class="music-toggle" id="musicBtn">
+        <i class="fas fa-music"></i>
+    </button>
+    
+    <script>
+        // Create floating pixel hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'pixel-heart';
+            
+            // Random position
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.bottom = '-20px';
+            
+            // Random size
+            const size = Math.random() * 20 + 10;
+            heart.style.width = size + 'px';
+            heart.style.height = size + 'px';
+            
+            // Random animation duration
+            heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+            
+            document.body.appendChild(heart);
+            
+            // Remove heart after animation
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+        
+        // Generate hearts every 0.5s
+        setInterval(createHeart, 500);
+        
+        // BGM Toggle
+        const bgm = document.getElementById('bgm');
+        const musicBtn = document.getElementById('musicBtn');
+        let isPlaying = false;
+        
+        musicBtn.addEventListener('click', () => {
+            isPlaying = !isPlaying;
+            if (isPlaying) {
+                bgm.play();
+                musicBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            } else {
+                bgm.pause();
+                musicBtn.innerHTML = '<i class="fas fa-music"></i>';
+            }
+        });
+    </script>
 </body>
 </html>
