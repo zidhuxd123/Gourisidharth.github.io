@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Send Me a Message</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 500px;
+      padding: 30px;
+      text-align: center;
+    }
+    h1 {
+      color: #4a4a4a;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    .description {
+      color: #666;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+    .input-box {
+      position: relative;
+      margin-bottom: 25px;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      padding: 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      resize: none;
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+    textarea:focus {
+      outline: none;
+      border-color: #6c63ff;
+      box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+    }
+    .char-count {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      color: #999;
+      font-size: 12px;
+    }
+    .send-btn {
+      background: linear-gradient(135deg, #6c63ff 0%, #4a42e0 100%);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+    }
+    .send-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
+    }
+    .send-btn:active {
+      transform: translateY(0);
+    }
+    .success-message {
+      color: #4BB543;
+      margin-top: 20px;
+      display: none;
+    }
+    .error-message {
+      color: #ff3333;
+      margin-top: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Send Me a Message</h1>
+    <p class="description">Type your question or message below and it will be sent directly to me via Telegram.</p>
+    
+    <div class="input-box">
+      <textarea id="messageInput" placeholder="Type your message here..." maxlength="500"></textarea>
+      <div class="char-count"><span id="charCount">0</span>/500</div>
+    </div>
+    
+    <button class="send-btn" id="sendBtn">Send Message</button>
+    
+    <p class="success-message" id="successMessage">✓ Message sent successfully!</p>
+    <p class="error-message" id="errorMessage">Failed to send message. Please try again.</p>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const messageInput = document.getElementById("messageInput");
+      const sendBtn = document.getElementById("sendBtn");
+      const charCount = document.getElementById("charCount");
+      const successMessage = document.getElementById("successMessage");
+      const errorMessage = document.getElementById("errorMessage");
+      
+      // Replace these with your actual Telegram bot details
+      const BOT_TOKEN = "8117317660:AAHZtND2w9EqaiQ66FAbsh0KXkEPYBRItEA";
+      const CHAT_ID = "8110106197";
+      
+      // Character count
+      messageInput.addEventListener("input", function() {
+        charCount.textContent = this.value.length;
+      });
+      
+      // Send message function
+      sendBtn.addEventListener("click", function() {
+        const message = messageInput.value.trim();
+        
+        if (!message) {
+          errorMessage.textContent = "Please enter a message";
+          errorMessage.style.display = "block";
+          setTimeout(() => errorMessage.style.display = "none", 3000);
+          return;
+        }
+        
+        sendBtn.disabled = true;
+        sendBtn.textContent = "Sending...";
+        
+        // Send to Telegram bot
+        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: message,
+            parse_mode: "HTML"
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.ok) {
+            successMessage.style.display = "block";
+            messageInput.value = "";
+            charCount.textContent = "0";
+            setTimeout(() => successMessage.style.display = "none", 3000);
+          } else {
+            throw new Error(data.description || "Failed to send message");
+          }
+        })
+        .catch(error => {
+          console.error("Error:", error);
+          errorMessage.textContent = error.message;
+          errorMessage.style.display = "block";
+          setTimeout(() => errorMessage.style.display = "none", 3000);
+        })
+        .finally(() => {
+          sendBtn.disabled = false;
+          sendBtn.textContent = "Send Message";
+        });
+      });
+    });
+  </script>
+</body>
+</html>
