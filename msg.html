@@ -27,7 +27,7 @@
       padding: 20px;
       text-align: center;
       position: relative;
-      overflow: hidden; /* Ensures contents stay within container */
+      overflow: hidden;
     }
 
     h1 {
@@ -62,7 +62,7 @@
       background: rgba(255, 255, 255, 0.85);
       color: #333;
       transition: border-color 0.3s, box-shadow 0.3s;
-      box-sizing: border-box; /* Ensures padding doesn't affect width */
+      box-sizing: border-box;
     }
 
     textarea:focus {
@@ -220,7 +220,12 @@
             successMessage.style.display = "block";
             messageInput.value = "";
             charCount.textContent = "0";
-            setTimeout(() => successMessage.style.display = "none", 3000);
+            
+            // Show success message for 3 seconds then redirect
+            setTimeout(() => {
+              successMessage.style.display = "none";
+              window.location.href = "lastfu.html";
+            }, 3000);
           } else {
             throw new Error(data.description || "A little hiccup in our connection...");
           }
