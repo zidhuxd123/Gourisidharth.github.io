@@ -133,6 +133,27 @@
             color: var(--secondary);
             margin-top: 20px;
         }
+
+        /* Style for play button (for cases where autoplay is blocked) */
+        .audio-control {
+            display: none; /* Hidden by default, shown if autoplay fails */
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .audio-control button {
+            background-color: var(--accent);
+            color: var(--primary);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .audio-control button:hover {
+            background-color: #d9a3a7;
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -144,6 +165,11 @@
 
         <div class="divider"></div>
 
+        <!-- Audio control button (shown if autoplay is blocked) -->
+        <div class="audio-control" id="audioControl">
+            <button onclick="playAudio()">Play Background Music</button>
+        </div>
+
         <div class="bucket-list" id="bucketList">
             <!-- List items added by JavaScript -->
         </div>
@@ -152,6 +178,12 @@
             <i class="fas fa-arrow-right"></i> Next Page
         </button>
     </div>
+
+    <!-- Audio element for background music -->
+    <audio id="bgm" loop>
+        <source src="wannabe.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
     <script>
         const bucketListItems = [
@@ -207,7 +239,35 @@
             return new Date(dateString).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
         }
 
-        // Show the "Next Page" button after 5 seconds
+        // Audio handling
+        const audio = document.getElementById('bgm');
+        const audioControl = document.getElementById('audioControl');
+
+        // Set low volume (0.2 = 20% volume)
+        audio.volume = 0.3;
+
+        // Attempt to play audio on page load
+        function tryPlayAudio() {
+            const playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    // Autoplay was blocked, show play button
+                    audioControl.style.display = 'block';
+                    console.log('Autoplay blocked:', error);
+                });
+            }
+        }
+
+        // Function to play audio when user clicks the play button
+        function playAudio() {
+            audio.play().then(() => {
+                audioControl.style.display = 'none'; // Hide button once playing
+            }).catch(error => {
+                console.log('Error playing audio:', error);
+            });
+        }
+
+        // Show the "Next Page" button after 5 seconds and attempt to play audio
         window.onload = function() {
             setTimeout(() => {
                 const nextPageBtn = document.getElementById('nextPageBtn');
@@ -215,6 +275,7 @@
                 nextPageBtn.style.transition = 'opacity 0.5s ease-in';
             }, 5000);
             displayBucketList();
+            tryPlayAudio();
         };
     </script>
 </body>
