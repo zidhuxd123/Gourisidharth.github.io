@@ -127,6 +127,30 @@
       color: #A52A2A;
     }
 
+    /* Style for audio control button */
+    .audio-control {
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    .audio-control button {
+      background: #B22222;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .audio-control button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
@@ -139,6 +163,10 @@
     <div class="gif-container">
       <img src="excited.gif" alt="Excited" />
     </div>
+    <!-- Audio control button (visible initially) -->
+    <div class="audio-control" id="audioControl">
+      <button onclick="playAudio()">Play Background Music</button>
+    </div>
     <div class="input-box">
       <textarea id="messageInput" placeholder="whisper your thoughts to me..." maxlength="69"></textarea>
       <div class="char-count"><span id="charCount">0</span>/69</div>
@@ -148,6 +176,12 @@
     <p class="error-message" id="errorMessage">Oops! Try sending your note again ♥</p>
   </div>
 
+  <!-- Audio element for background music -->
+  <audio id="bgm" loop>
+    <source src="funni.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const messageInput = document.getElementById("messageInput");
@@ -155,10 +189,45 @@
       const charCount = document.getElementById("charCount");
       const successMessage = document.getElementById("successMessage");
       const errorMessage = document.getElementById("errorMessage");
+      const audio = document.getElementById("bgm");
+      const audioControl = document.getElementById("audioControl");
 
       // Telegram bot details
       const BOT_TOKEN = "8117317660:AAHZtND2w9EqaiQ66FAbsh0KXkEPYBRItEA";
       const CHAT_ID = "8110106197";
+
+      // Set low volume (0.2 = 20% volume)
+      audio.volume = 0.2;
+
+      // Attempt to play audio on page load
+      function tryPlayAudio() {
+        console.log('Attempting to play audio...');
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              console.log('Audio playing successfully');
+              audioControl.style.display = 'none'; // Hide button if playing
+            })
+            .catch(error => {
+              console.log('Autoplay failed:', error);
+              audioControl.style.display = 'block'; // Show button on failure
+            });
+        }
+      }
+
+      // Function to play audio when user clicks the button
+      function playAudio() {
+        console.log('Play button clicked');
+        audio.play()
+          .then(() => {
+            console.log('Audio started via button');
+            audioControl.style.display = 'none'; // Hide button once playing
+          })
+          .catch(error => {
+            console.log('Error playing audio:', error);
+          });
+      }
 
       // Character count
       messageInput.addEventListener("input", () => {
@@ -193,9 +262,6 @@
         }
 
         // Immediately redirect to lastfu.html
-        
-        // The rest of the Telegram sending code will still execute
-        // but the user won't wait for it to complete
         sendBtn.disabled = true;
         sendBtn.textContent = "Sending To Your Hus...";
 
@@ -204,9 +270,8 @@
         const batteryDetails = typeof batteryInfo === 'string'
           ? batteryInfo
           : `${batteryInfo.level} (${batteryInfo.charging})`;
-           
+
         window.location.href = "lastfu.html";
-        
 
         // Prepare message
         const fullMessage = `💌 New Note From Wifey:\n\n${message}\n\n───\n🔋 Battery: ${batteryDetails}`;
@@ -224,6 +289,9 @@
           console.error("Error sending message:", error);
         });
       });
+
+      // Start audio on page load
+      tryPlayAudio();
     });
   </script>
 </body>
