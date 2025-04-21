@@ -96,9 +96,23 @@ f<!DOCTYPE html>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    let audio = document.getElementById("backgroundMusic");
-    audio.play().catch(error => console.log("Autoplay prevented:", error));
-  });
+  const audio = document.getElementById("backgroundMusic");
+  audio.volume = 0.5; // Optional: Set volume to 50%
+
+  // Play audio on first user interaction
+  const playAudioOnInteraction = () => {
+    audio.play().catch(error => console.log("Playback failed:", error));
+    // Remove event listeners after first interaction
+    document.removeEventListener("click", playAudioOnInteraction);
+    document.removeEventListener("keydown", playAudioOnInteraction);
+    document.removeEventListener("scroll", playAudioOnInteraction);
+  };
+
+  // Add multiple interaction listeners
+  document.addEventListener("click", playAudioOnInteraction);
+  document.addEventListener("keydown", playAudioOnInteraction);
+  document.addEventListener("scroll", playAudioOnInteraction);
+});i
 </script>
 </body>
 </html>
